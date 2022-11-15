@@ -49,7 +49,7 @@ public class First_Tower : MonoBehaviour
         Vector3 direction = target.position - transform.position;
         Quaternion lookRotation = Quaternion.LookRotation(direction);
         Vector3 rotation = Quaternion.Lerp(rotatingPart.rotation, lookRotation, Time.deltaTime * rotationSpeed).eulerAngles;
-        rotatingPart.rotation = Quaternion.Euler(0f, rotation.y, 0f); //Rotating only on y axis of the tower
+        rotatingPart.rotation = Quaternion.Euler(0f, rotation.y , 0f); //Rotating only on y axis of the tower
     }
     void OnDrawGizmosSelected() //Drawing range of tower for debug 
     {
