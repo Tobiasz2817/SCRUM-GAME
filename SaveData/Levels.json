@@ -1,0 +1,125 @@
+ê{
+    "Items": {
+        "keyData": [
+            "Levels"
+        ],
+        "valueData": [
+            {
+                "Items": [
+                    {
+                        "isReached": true,
+                        "nameLevel": "Level 1"
+                    },
+                    {
+                        "isReached": true,
+                        "nameLevel": "Level 2"
+                    },
+                    {
+                        "isReached": true,
+                        "nameLevel": "Level 3"
+                    },
+                    {
+                        "isReached": true,
+                        "nameLevel": "Level 4"
+                    },
+                    {
+                        "isReached": true,
+                        "nameLevel": "Level 5"
+                    },
+                    {
+                        "isReached": true,
+                        "nameLevel": "Level 6"
+                    },
+                    {
+                        "isReached": true,
+                        "nameLevel": "Level 7"
+                    },
+                    {
+                        "isReached": true,
+                        "nameLevel": "Level 8"
+                    },
+                    {
+                        "isReached": true,
+                        "nameLevel": "Level 9"
+                    },
+                    {
+                        "isReached": true,
+                        "nameLevel": "Level 10"
+                    },
+                    {
+                        "isReached": true,
+                        "nameLevel": "Level 11"
+                    },
+                    {
+                        "isReached": true,
+                        "nameLevel": "Level 12"
+                    },
+                    {
+                        "isReached": true,
+                        "nameLevel": "Level 13"
+                    },
+                    {
+                        "isReached": true,
+                        "nameLevel": "Level 14"
+                    },
+                    {
+                        "isReached": true,
+                        "nameLevel": "Level 15"
+                    },
+                    {
+                        "isReached": true,
+                        "nameLevel": "Level 16"
+                    },
+                    {
+                        "isReached": true,
+                        "nameLevel": "Level 17"
+                    },
+                    {
+                        "isReached": true,
+                        "nameLevel": "Level 18"
+                    },
+                    {
+                        "isReached": true,
+                        "nameLevel": "Level 19"
+                    },
+                    {
+                        "isReached": true,
+                        "nameLevel": "Level 20"
+                    },
+                    {
+                        "isReached": true,
+                        "nameLevel": "Level 21"
+                    },
+                    {
+                        "isReached": true,
+                        "nameLevel": "Level 22"
+                    },
+                    {
+                        "isReached": true,
+                        "nameLevel": "Level 23"
+                    },
+                    {
+                        "isReached": true,
+                        "nameLevel": "Level 24"
+                    },
+                    {
+                        "isReached": true,
+                        "nameLevel": "Level 25"
+                    },
+                    {
+                        "isReached": false,
+                        "nameLevel": "Level 26"
+                    },
+                    {
+                        "isReached": false,
+                        "nameLevel": "Level 27"
+                    },
+                    {
+                        "isReached": false,
+                        "nameLevel": "Level 28"
+                    }
+                ]
+            }
+        ]
+    }
+}

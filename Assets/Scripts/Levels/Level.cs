@@ -10,13 +10,11 @@ public class Level : MonoBehaviour
     [SerializeField] private TMP_Text levelText;
     
     [SerializeField] private float duration;
-
     public static event Action<Level> OnClick;
 
     private CanvasGroup _canvasGroup;
 
-    private bool isGained = false;
-    public bool IsGained { private set => isGained = value; get => isGained; }
+    public LevelInfo levelInfo;
 
     #region Unity Events
     
@@ -27,9 +25,8 @@ public class Level : MonoBehaviour
     
     void OnEnable()
     {
-        _canvasGroup.DOFade(0, duration);
-        
         button.onClick.AddListener(InvokeEvent);
+        DisablePanel();
     }
     
     void OnDisable()
@@ -39,21 +36,45 @@ public class Level : MonoBehaviour
     
     #endregion
    
-    public void SetUpLevel(string levelText)
+    public void SetUpLevel(LevelInfo levelInfo)
     {
-        this.levelText.text = levelText;
-        name = levelText;
+        this.levelInfo.isReached = levelInfo.isReached;
+        this.levelInfo.nameLevel = levelInfo.nameLevel;
+        this.levelText.text = this.levelInfo.nameLevel;
     }
 
+    public void EnablePanel()
+    {
+        PanelActivity(new PanelActivity() { endValueFade = 1, isInteractable = true, isRaycast = true});
+    }
+    public void DisablePanel()
+    {
+        PanelActivity(new PanelActivity() { endValueFade = 0, isInteractable = false, isRaycast = false});
+    }
     private void InvokeEvent()
     {
         OnClick?.Invoke(this);
     }
     
-    public void EnablePanelFade()
+    public void PanelActivity(PanelActivity panelActivity)
     {
-        _canvasGroup.DOFade(1, duration);
+        _canvasGroup.DOFade(panelActivity.endValueFade, duration);
+        _canvasGroup.interactable = panelActivity.isInteractable;
+        _canvasGroup.blocksRaycasts = panelActivity.isRaycast;
 
-        IsGained = true;
+        levelInfo.isReached = panelActivity.endValueFade == 1 ? true : false;
     }
+}
+[Serializable]
+public struct LevelInfo
+{
+    public bool isReached;
+    public string nameLevel;
+}
+
+public struct PanelActivity
+{
+    public int endValueFade;
+    public bool isInteractable;
+    public bool isRaycast;
 }
