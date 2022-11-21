@@ -6,27 +6,39 @@ using System.Runtime.Serialization;
 using Unity.VisualScripting;
 using UnityEngine;
 
-
 public class SaveManager
 {
     [Serializable]
     private class Wrapper<T>
     {
-        public List<T> Items;
+        public SerializedDictionary<string, Item<T>> Items = new SerializedDictionary<string, Item<T>>();
+    }
+    
+    [Serializable]
+    public class Item<T>
+    {
+        public List<T> Items = new List<T>();
     }
     
     private static string directory = "SaveData";
-    private static string typeFile = ".save";
+    private static string typeFile = ".json";
 
-    public static void SaveDates<T>(T[] saveData,string fileName)
+    public static void SaveDates<T>(string key,List<T> newDates,string fileName,ModificationType modType = ModificationType.Append)
     {
         if (!DirectoryExists())
             Directory.CreateDirectory(directory);
 
-        Wrapper<T> wrapper = new Wrapper<T>();
-        if (SaveExsist(fileName)) wrapper.Items = LoadAndAppend(saveData, fileName);
-        else wrapper.Items = saveData.ToList();
-        
+        Wrapper<T> wrapper = null;
+        switch (modType)
+        {
+            case ModificationType.Replaced:
+                wrapper = CreateData<T>(key, newDates, fileName);
+                break;
+            case ModificationType.Append:
+                wrapper = ModificateData<T>(key, newDates, fileName);
+                break;
+        }
+
         FileStream dataStream = new FileStream(GetFullPath(fileName), FileMode.Create);
         using BinaryWriter writer = new BinaryWriter(dataStream);
 
@@ -35,20 +47,62 @@ public class SaveManager
         
         dataStream.Close();
     }
-
-    private static List<T> LoadAndAppend<T>(T[] newData,string fileName)
+    private static Wrapper<T> CreateData<T>(string key,List<T> newDates,string fileName)
     {
-        var loadedDates = LoadDates<T>(fileName);
+        Wrapper<T> wrapper = new Wrapper<T>();
         
-        foreach (var tmp in newData)
-        {
-            if (!loadedDates.Contains(tmp))
-                loadedDates.Add(tmp);
-        }
+        if (SaveExsist(fileName))
+            wrapper.Items = GetFile<T>(fileName);
 
-        return newData.ToList();
+        if (wrapper.Items.ContainsKey(key))
+            wrapper.Items.Remove(key);
+
+        wrapper.Items.Add(key,new Item<T>() { Items = newDates } );
+
+        return wrapper;
     }
-    public static List<T> LoadDates<T>(string fileName)
+    private static Wrapper<T> ModificateData<T>(string key,List<T> newDates,string fileName)
+    {
+        Wrapper<T> wrapper = new Wrapper<T>();
+        
+        if (SaveExsist(fileName))
+            wrapper.Items = GetFile<T>(fileName);
+
+        if (!wrapper.Items.ContainsKey(key))
+            wrapper.Items.Add(key, new Item<T>() { Items = newDates } );
+        else
+            foreach (var data in newDates)
+                wrapper.Items[key].Items.Add(data);
+        
+        return wrapper;
+    }
+    public static List<T> LoadDates<T>(string key,string fileName)
+    {
+        if (SaveExsist(fileName))
+        {   
+            try
+            {
+                FileStream dataStream = new FileStream(GetFullPath(fileName), FileMode.Open);
+
+                using BinaryReader reader = new BinaryReader(dataStream);
+                var jsonString = reader.ReadString();
+                Wrapper<T> wrapper = JsonUtility.FromJson<Wrapper<T>>(jsonString);
+
+                dataStream.Close();
+                
+                if (wrapper.Items.ContainsKey(key)) return wrapper.Items[key].Items;
+            }
+            catch (SerializationException exc)
+            {
+                Debug.Log("Failed to load file");
+            }
+        }
+        
+        
+        return new List<T>(){};
+    }
+
+    private static SerializedDictionary<string,Item<T>> GetFile<T>(string fileName)
     {
         if (SaveExsist(fileName))
         {   
@@ -62,9 +116,6 @@ public class SaveManager
 
                 dataStream.Close();
 
-                if(wrapper.Items == null)
-                    Debug.Log("ITem are null");
-                
                 return wrapper.Items;
             }
             catch (SerializationException exc)
@@ -72,11 +123,9 @@ public class SaveManager
                 Debug.Log("Failed to load file");
             }
         }
-        
-        
-        return new List<T>(){};
-    }
 
+        return new SerializedDictionary<string, Item<T>>();
+    }
     private static bool SaveExsist(string fileName)
     {
         return File.Exists(GetFullPath(fileName));
@@ -93,3 +142,8 @@ public class SaveManager
     }
 }
 
+public enum ModificationType 
+{
+    Replaced,
+    Append
+}

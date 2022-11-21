@@ -1,17 +1,19 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 using UnityEngine.UI;
 
 public class LevelsController : MonoBehaviour
 {
     public const string LEVEL_FILE_NAME = "Levels";
+    public const string LEVEL_KEY_NAME = "Levels";
 
     [SerializeField] private Button saveButton;
     [SerializeField] private LevelsGeneration _levelsGeneration;
     
-    private Level[] levelsOnScene;
+    private List<Level> levelsOnScene;
     
     private void Awake()
     {
@@ -20,17 +22,14 @@ public class LevelsController : MonoBehaviour
 
     private void UnlockLevel(Level obj)
     {
-        for (int i = 0; i < levelsOnScene.Length; i++)
-            if(levelsOnScene[i] == obj)
-                if(i + 1 < levelsOnScene.Length)
-                    if (!levelsOnScene[i + 1].IsGained)
-                    {
-                        if(i == 0)
-                            levelsOnScene[i + 1].EnablePanelFade();
-                        else
-                            if(levelsOnScene[i - 1].IsGained)
-                                levelsOnScene[i + 1].EnablePanelFade();
-                    }
+        for (int i = 1; i <= levelsOnScene.Count; i++)
+        {
+            if (levelsOnScene[i - 1] == obj)
+            {
+                levelsOnScene[i].EnablePanel();
+                break;
+            }
+        }
     }
 
     private void Start()
@@ -50,17 +49,16 @@ public class LevelsController : MonoBehaviour
     }
     private void EnableFirstLevel()
     {
-        if (levelsOnScene != null && levelsOnScene.Length >= 1)
-            levelsOnScene[0].EnablePanelFade();
+        if (levelsOnScene != null && levelsOnScene.Count >= 1)
+            levelsOnScene[0].EnablePanel();
     }
     
     public void SaveLevels()
     {
-        List<bool> boolList = new List<bool>();
+        List<LevelInfo> levelInfos = new List<LevelInfo>();
         foreach (var level in levelsOnScene)
-        { 
-            boolList.Add(level.IsGained);
-        }
-        SaveManager.SaveDates(boolList.ToArray(),LEVEL_FILE_NAME);
+            levelInfos.Add(level.levelInfo);
+
+        SaveManager.SaveDates(LEVEL_KEY_NAME,levelInfos,LEVEL_FILE_NAME, ModificationType.Replaced);
     }
 }
