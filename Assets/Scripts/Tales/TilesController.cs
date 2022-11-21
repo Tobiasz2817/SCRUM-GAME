@@ -8,9 +8,11 @@ using UnityEngine.UI;
 public class TilesController : MonoBehaviour
 {
     [SerializeField]
-    private List<Tile> tales = new List<Tile>();
+    private List<Tile> tiles = new List<Tile>();
 
-    public List<Tile> lastTales;
+    public List<Tile> lastTiles = new List<Tile>();
+
+    [SerializeField] public Transform finallyPoint;
     
     void Start()
     {
