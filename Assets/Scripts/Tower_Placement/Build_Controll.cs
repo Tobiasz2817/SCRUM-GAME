@@ -5,20 +5,20 @@ using UnityEngine;
 public class Build_Controll : MonoBehaviour
 {
     public static Build_Controll instance;
-    public GameObject towerToBuild;
+
     private void Awake()
     {
         instance = this;
     }
 
-    public GameObject normalTurretPrefab;
-    public GameObject normalTurretPrefab2;
-    public void SelectTurretToBuild(GameObject tower)
+    public GameObject NormalTurretPrefab;
+    private GameObject turretToBuild;
+    private void Start()
     {
-        towerToBuild = tower;
+        turretToBuild = NormalTurretPrefab;
     }
     public GameObject GetTurretToBuild()
     {
-        return towerToBuild;
+        return turretToBuild;
     }
 }
