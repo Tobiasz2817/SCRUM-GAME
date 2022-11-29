@@ -3,16 +3,16 @@ using UnityEngine;
 
 public abstract class Unit : MonoBehaviour
 {
-    public UnitParapeters unitParapeters;
+    public UnitParameters unitParameters;
     protected void DisableUnit(Unit unit)
     {
-        unit.gameObject.SetActive(false);
+        Destroy(unit.gameObject);
         Debug.Log("REACHED");
     }
 }
 
 [Serializable]
-public struct UnitParapeters
+public struct UnitParameters
 {
     public int health;
     public int damage;
