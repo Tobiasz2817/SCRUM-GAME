@@ -1,45 +1,23 @@
-using System;
-using System.Collections.Generic;
-using System.Linq;
 using Unity.AI.Navigation;
 using UnityEngine;
 
+
 public class NavigationBaker : MonoBehaviour {
 
-    private NavMeshSurface surface;
-
-    private List<Transform> tilePath = new List<Transform>();
-    
+    public NavMeshSurface[] surfaces;
+ 
+    // Use this for initialization
     private void Awake()
     {
-        surface = GetComponent<NavMeshSurface>();
-    }
-    void Start ()
-    {
-        tilePath = GetComponentsInChildren<Transform>().ToList();
+        surfaces = FindObjectsOfType<NavMeshSurface>();
     }
 
-    private void OnEnable()
+    void Start () 
     {
-        TilesController.OnTileAdded += GenerateSurface;
-    }
-
-    private void OnDisable()
-    {
-        TilesController.OnTileAdded -= GenerateSurface;
-    }
-    
-    private void GenerateSurface(Transform[] tilePath_)
-    {
-        foreach (var path in tilePath_)
+        /*for (int i = 0; i < surfaces.Length; i++) 
         {
-            // Creating object path
-            var newPath = Instantiate(path,path.position,path.rotation, transform);
-            tilePath.Add(newPath);
-        }
-
-        surface.BuildNavMesh();
+            surfaces [i].BuildNavMesh ();    
+        }   */ 
     }
 
-    
 }

@@ -129,11 +129,7 @@ NavMeshAgent:
   m_Radius: 0.5
   m_Speed: 8
   m_Acceleration: 20
-<<<<<<< HEAD
   avoidancePriority: 1
-=======
-  avoidancePriority: 50
->>>>>>> ec0c23bda3994ce74ff03479c6a3338acaa5e001
   m_AngularSpeed: 120
   m_StoppingDistance: 0
   m_AutoTraverseOffMeshLink: 1
@@ -156,9 +152,5 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   unitParameters:
-<<<<<<< HEAD
     health: 100
-=======
-    health: 0
->>>>>>> ec0c23bda3994ce74ff03479c6a3338acaa5e001
     damage: 0
