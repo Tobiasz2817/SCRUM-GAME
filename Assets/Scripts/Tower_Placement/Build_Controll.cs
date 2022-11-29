@@ -10,15 +10,15 @@ public class Build_Controll : MonoBehaviour
     {
         instance = this;
     }
-
-    public GameObject NormalTurretPrefab;
-    private GameObject turretToBuild;
-    private void Start()
+    public GameObject normalTurretPrefab;
+    public GameObject normalTurretPrefab2;
+    public GameObject towerToBuild;
+    public void SelectTurretToBuild(GameObject tower)
     {
-        turretToBuild = NormalTurretPrefab;
+        towerToBuild = tower;
     }
     public GameObject GetTurretToBuild()
     {
-        return turretToBuild;
+        return towerToBuild;
     }
 }
