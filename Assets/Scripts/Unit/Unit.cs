@@ -3,17 +3,17 @@ using UnityEngine;
 
 public abstract class Unit : MonoBehaviour
 {
-    public UnitParapeters unitParapeters;
+    public UnitParameters unitParameters;
+
     protected void DisableUnit(Unit unit)
     {
         unit.gameObject.SetActive(false);
         Debug.Log("REACHED");
     }
 }
-
 [Serializable]
-public struct UnitParapeters
+public struct UnitParameters
 {
-    public int health;
+    public float health;
     public int damage;
 }

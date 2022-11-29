@@ -21,4 +21,5 @@ public class LevelStats : MonoBehaviour
     {
         mana += manaGrowth;
     }
+   
 }

@@ -63,8 +63,8 @@ MeshRenderer:
   m_RendererPriority: 0
   m_Materials:
   - {fileID: 7731730344938027351, guid: f1e9de748c2166146939ae79789c3c94, type: 3}
-  - {fileID: -583405790510602304, guid: f1e9de748c2166146939ae79789c3c94, type: 3}
-  - {fileID: 3044043465599994531, guid: f1e9de748c2166146939ae79789c3c94, type: 3}
+  - {fileID: 2100000, guid: 308251b98b6d95342813d2c0477dfe2b, type: 2}
+  - {fileID: 2100000, guid: d282c36e4b0e7f942af077f1d6d628a2, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -112,8 +112,8 @@ Transform:
   m_GameObject: {fileID: 2429440703221925710}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: -1.8129421, y: 0.5, z: 1.9143515}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
+  m_LocalScale: {x: 7, y: 7, z: 7}
+  m_ConstrainProportionsScale: 1
   m_Children:
   - {fileID: 1220498493818418987}
   - {fileID: 497889241167274995}
@@ -132,13 +132,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0bb45dfc09f42bc479ea6e1f4359876e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  range: 15
+  range: 50
   rotatingPart: {fileID: 497889241167274995}
   rotationSpeed: 10
   enemyTag: Enemy
-  fireRate: 1
-  firePoint: {fileID: 6896326106606518320}
   bulletPrefab: {fileID: 2379682111148025020, guid: 48338ccf09c0a1f4e93f411a9997fbfe, type: 3}
+  firePoint: {fileID: 6896326106606518320}
+  fireRate: 1
 --- !u!1 &2792615140873116500
 GameObject:
   m_ObjectHideFlags: 0
@@ -263,8 +263,8 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: -583405790510602304, guid: f1e9de748c2166146939ae79789c3c94, type: 3}
-  - {fileID: 3044043465599994531, guid: f1e9de748c2166146939ae79789c3c94, type: 3}
+  - {fileID: 2100000, guid: 308251b98b6d95342813d2c0477dfe2b, type: 2}
+  - {fileID: 2100000, guid: 308251b98b6d95342813d2c0477dfe2b, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
