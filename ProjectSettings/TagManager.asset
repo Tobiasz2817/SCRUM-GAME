@@ -3,9 +3,13 @@
 --- !u!78 &1
 TagManager:
   serializedVersion: 2
+<<<<<<< HEAD
   tags:
   - BuildPlace
   - Enemy
+=======
+  tags: []
+>>>>>>> ec0c23bda3994ce74ff03479c6a3338acaa5e001
   layers:
   - Default
   - TransparentFX
