@@ -11,23 +11,44 @@ public class Node_Controll : MonoBehaviour
     private Renderer rend;
     public Vector3 positionOffset;
     private Color startColor;
+    Build_Controll build_Controll;
+    private LevelStats levelStats;
     // Start is called before the first frame update
     void Start()
     {
-        
+
         rend = GetComponent<Renderer>();
         startColor = rend.material.color;
+        build_Controll = Build_Controll.instance;
+    }
+
+    private void OnEnable()
+    {
+        levelStats = FindObjectOfType<LevelStats>();
+
     }
 
     void OnMouseDown()
     {
+        if (build_Controll.towerToBuild == null)
+        {
+            Debug.Log("Shop tower is not selected");
+        }
         if (turret!= null)
         {
             Debug.Log("Cant build there");
             return;
         }
-        GameObject turretToBuild = Build_Controll.instance.GetTurretToBuild();
-        turret = (GameObject)Instantiate(turretToBuild, transform.position + positionOffset, transform.rotation);
+        GameObject turretToBuild = build_Controll.GetTurretToBuild();
+        if (levelStats.mana <= 50f)
+        {
+            Debug.Log("not enough mana");
+        }
+        else
+        {
+            turret = (GameObject)Instantiate(turretToBuild, transform.position + positionOffset, transform.rotation);
+            levelStats.mana -= 50f;
+        }
     }
     void OnMouseEnter()
     {

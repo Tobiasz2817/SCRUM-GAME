@@ -6,10 +6,14 @@ using UnityEngine;
 public class First_Tower : MonoBehaviour
 {
     private Transform target;
-    public float range = 15f;
+    public float range = 50f;
     public Transform rotatingPart;
     public float rotationSpeed = 10f;
     public string enemyTag = "Enemy";
+    public GameObject bulletPrefab;
+    public Transform firePoint;
+    public float fireRate = 1f;
+    private float fireCountdown = 0f;
     // Start is called before the first frame update
     void Start()
     {
@@ -50,6 +54,21 @@ public class First_Tower : MonoBehaviour
         Quaternion lookRotation = Quaternion.LookRotation(direction);
         Vector3 rotation = Quaternion.Lerp(rotatingPart.rotation, lookRotation, Time.deltaTime * rotationSpeed).eulerAngles;
         rotatingPart.rotation = Quaternion.Euler(0f, rotation.y , 0f); //Rotating only on y axis of the tower
+        if (fireCountdown <= 0f)
+        {
+            Shoot();
+            fireCountdown = 1f / fireRate;
+        }
+
+        fireCountdown -= Time.deltaTime;
+    }
+    void Shoot()
+    {
+        GameObject bulletGO = (GameObject)Instantiate(bulletPrefab, firePoint.position, firePoint.rotation);
+        standardBullet bullet = bulletGO.GetComponent<standardBullet>();
+
+        if (bullet != null)
+            bullet.Seek(target);
     }
     void OnDrawGizmosSelected() //Drawing range of tower for debug 
     {

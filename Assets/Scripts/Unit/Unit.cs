@@ -14,6 +14,6 @@ public abstract class Unit : MonoBehaviour
 [Serializable]
 public struct UnitParameters
 {
-    public int health;
+    public float health;
     public int damage;
 }
