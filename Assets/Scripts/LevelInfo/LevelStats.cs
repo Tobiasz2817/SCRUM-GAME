@@ -1,9 +1,10 @@
 using UnityEngine.UI;
+using TMPro;
 using UnityEngine;
 
 public class LevelStats : MonoBehaviour
 {
-    public Text ManaUI;
+    public TMP_Text ManaUI;
     public float mana;
     public float manaGrowth;
     private void Start()
