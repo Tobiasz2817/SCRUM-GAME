@@ -1,10 +1,10 @@
 using UnityEngine;
 
-public class standardBullet : MonoBehaviour
+public class laser_bullet : MonoBehaviour
 {
     private Transform target;
-    public float speed = 70f;
-    private float damage = 10f;
+    public float speed = 150f;
+    private float damage = 5f;
     private LevelStats levelStats;
     private void OnEnable()
     {

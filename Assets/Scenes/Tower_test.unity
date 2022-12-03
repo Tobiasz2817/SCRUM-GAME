@@ -463,7 +463,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5c1b6a8962949f44abe1904b397a3a4e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  ManaUI: {fileID: 673768508}
+  ManaUI: {fileID: 0}
   mana: 0
   manaGrowth: 0
 --- !u!4 &584454158
@@ -605,7 +605,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 99cdb184ab880c34bb12becbd329f23d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  NormalTurretPrefab: {fileID: 2429440703221925710, guid: c5e76c7dee29c9b479668fda44fc12ea, type: 3}
+  normalTurretPrefab: {fileID: 0}
+  normalTurretPrefab2: {fileID: 0}
+  towerToBuild: {fileID: 0}
 --- !u!1 &1268641361
 GameObject:
   m_ObjectHideFlags: 0
