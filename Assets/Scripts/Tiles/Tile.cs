@@ -8,8 +8,8 @@ public class Tile : MonoBehaviour
 {
     [SerializeField] public TilePath path;
     [SerializeField] public TileInterface tileInterface;
+    [SerializeField] public TileMoveToPoints tilePoints;
+    [SerializeField] public int countNewPath;
 
-    [SerializeField] public List<Transform> spawnPositions;
-    [SerializeField] public Transform finallyPosition;
-    [SerializeField] public Transform newTilePlaceHolder;
+
 }
