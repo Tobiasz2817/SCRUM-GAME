@@ -23,8 +23,15 @@ public class EnemySpawner : MonoBehaviour
         while (true)
         {
             yield return new WaitForSeconds(delayTime);
-            var enemy = Instantiate(enemyPrefab, tilesController.lastTile.spawnPositions[0].position,tilesController.lastTile.spawnPositions[0].rotation);
-            enemy.GetComponent<UnitAI>().SetUnit(tilesController.finallyPoint.position);
+
+            foreach (var lastTile in tilesController.lastTiles)
+            {
+                foreach (var lastTileSpawnPoint in lastTile.tilePoints.spawnPositions)
+                {
+                    var enemy = Instantiate(enemyPrefab, lastTileSpawnPoint.position,lastTileSpawnPoint.rotation);
+                    enemy.GetComponent<UnitAI>().SetUnit(tilesController.finallyPoint.position);
+                }
+            }
         }
     }
 }
