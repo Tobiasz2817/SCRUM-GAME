@@ -13,7 +13,7 @@ public class TilesController : MonoBehaviour
     [SerializeField]
     private List<GameObject> tiles = new List<GameObject>();
 
-    public Tile lastTile;
+    public List<Tile> lastTiles;
 
     [SerializeField] 
     public Transform finallyPoint;
@@ -24,36 +24,20 @@ public class TilesController : MonoBehaviour
     {
         // Make First Tile
         SpawnTile(0,Vector3.zero, Quaternion.identity);
-        finallyPoint = lastTile.finallyPosition != null ? lastTile.finallyPosition : finallyPoint;
+        finallyPoint = lastTiles[0].tilePoints.finallyPosition != null ? lastTiles[0].tilePoints.finallyPosition : finallyPoint;
     }
 
     private void OnEnable()
     {
-        TileInterface.OnTileCreate += GenerateTransformNewTile;
+        TileCreatingInterface.OnNewTileCreating += SpawnTile;
     }
 
     private void OnDisable()
     {
-        TileInterface.OnTileCreate -= GenerateTransformNewTile;
-    }
-    
-    private void GenerateTransformNewTile()
-    {
-        SpawnTile(lastTile.newTilePlaceHolder);
+        TileCreatingInterface.OnNewTileCreating -= SpawnTile;
     }
 
-    private void SpawnTile(Vector3 pos, Quaternion rot)
-    {
-        var randomTile = Random.Range(1, tiles.Count);
-        Vector3 spawnPos = lastTile != null ? lastTile.transform.position + pos : pos;
-        //Quaternion spawnRot = lastTile != null ? new Quaternion(lastTile.transform.rotation.x + rot.x,lastTile.transform.rotation.y + rot.y,lastTile.transform.rotation.z + rot.z,lastTile.transform.rotation.w + rot.w) : rot;
-        Quaternion spawnRot = lastTile != null ? rot : rot;
-        lastTile = Instantiate(tiles[randomTile],spawnPos,spawnRot,transform).GetComponent<Tile>();
-        lastTile.tileInterface.gameObject.SetActive(true);
-
-        OnTileAdded?.Invoke(lastTile.path.TileSurfacePath());
-    }
-    private void SpawnTile(Transform newTilePos)
+    private void SpawnTile(Tile lastTile,Transform newTilePos)
     {
         var randomTile = Random.Range(1, tiles.Count);
         
@@ -61,28 +45,38 @@ public class TilesController : MonoBehaviour
 
         nextTile.gameObject.SetActive(false);
 
-        int[] valuesRotate = {0, 90, 180, 270};
-        foreach (var value in valuesRotate)
-        {
-            nextTile.transform.rotation = Quaternion.Euler(0, value - nextTile.transform.position.y, 0);
-            
-            if (Vector3.Distance(lastTile.spawnPositions[0].position, nextTile.finallyPosition.position) < 3f)
-                break;
-        }
+        SetSuitableTileRotation(nextTile,lastTile);
 
         nextTile.gameObject.SetActive(true);
+
+        if (lastTiles.Contains(lastTile) && lastTile.roads == CountRoads.Single)
+            lastTiles.Remove(lastTile);
+
+        lastTiles.Add(nextTile);
         
-        lastTile = nextTile;
-        lastTile.tileInterface.gameObject.SetActive(true);
-        OnTileAdded?.Invoke(lastTile.path.TileSurfacePath());
+        OnTileAdded?.Invoke(this.lastTiles[(int)lastTiles.Count - 1].path.TileSurfacePath());
     }
     private void SpawnTile(int index,Vector3 pos, Quaternion rot)
     {
-        Vector3 spawnPos = lastTile != null ? lastTile.transform.position + pos : pos;
-        Quaternion spawnRot = lastTile != null ? new Quaternion(lastTile.transform.rotation.x + rot.x,lastTile.transform.rotation.y + rot.y,lastTile.transform.rotation.z + rot.z,lastTile.transform.rotation.w + rot.w) : rot;
-        lastTile = Instantiate(tiles[index],spawnPos,spawnRot,transform).GetComponent<Tile>();
-        lastTile.tileInterface.gameObject.SetActive(true);
+        lastTiles.Add(Instantiate(tiles[index],tiles[index].transform.position,Quaternion.identity,transform).GetComponent<Tile>());
 
-        OnTileAdded?.Invoke(lastTile.path.TileSurfacePath());
+        OnTileAdded?.Invoke(lastTiles[(int)lastTiles.Count - 1].path.TileSurfacePath());
+    }
+
+    private void SetSuitableTileRotation(Tile nextTile,Tile lastTile)
+    {
+        if (!lastTile) return;
+        
+        int[] valuesRotate = {0, 90, 180, 270};
+
+        Transform spawnPoint = lastTile.tilePoints.GetClosestsSpawnPoint(nextTile.tilePoints.finallyPosition);
+        
+        foreach (var value in valuesRotate)
+        {
+            nextTile.transform.rotation = Quaternion.Euler(0, value - nextTile.transform.position.y, 0);
+
+            if (Vector3.Distance(spawnPoint.position, nextTile.tilePoints.finallyPosition.position) < 3f)
+                break;
+        }
     }
 }
