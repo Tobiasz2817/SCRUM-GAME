@@ -49,7 +49,7 @@ public class TilesController : MonoBehaviour
 
         nextTile.gameObject.SetActive(true);
 
-        if (lastTiles.Contains(lastTile) && lastTile.countNewPath <= 1)
+        if (lastTiles.Contains(lastTile) && lastTile.roads == CountRoads.Single)
             lastTiles.Remove(lastTile);
 
         lastTiles.Add(nextTile);

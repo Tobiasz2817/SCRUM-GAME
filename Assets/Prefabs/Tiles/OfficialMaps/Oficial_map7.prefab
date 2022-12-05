@@ -2194,7 +2194,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 691862551054599598}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 9.453, z: 0}
+  m_LocalPosition: {x: 0, y: 9.453, z: -39.8}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -14428,7 +14428,7 @@ MonoBehaviour:
   path: {fileID: 8585950729099033685}
   tileInterface: {fileID: 1640359048908147196}
   tilePoints: {fileID: 8207958362261888455}
-  countNewPath: 2
+  roads: 1
 --- !u!1 &3222660257529626565
 GameObject:
   m_ObjectHideFlags: 0
@@ -14650,6 +14650,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   newTileTransform: {fileID: 8801977709996233308}
+  spawnPoint: {fileID: 7790410992599069252}
 --- !u!1 &3253842002455478072
 GameObject:
   m_ObjectHideFlags: 0
@@ -15385,6 +15386,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   newTileTransform: {fileID: 1765335280815810536}
+  spawnPoint: {fileID: 9196003252123830611}
 --- !u!1 &3425231460892267609
 GameObject:
   m_ObjectHideFlags: 0

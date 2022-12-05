@@ -1443,6 +1443,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   newTileTransform: {fileID: 8786814148166045278}
+  spawnPoint: {fileID: 8786814148166045278}
 --- !u!1 &407774644659586764
 GameObject:
   m_ObjectHideFlags: 0
@@ -3493,6 +3494,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   newTileTransform: {fileID: 1649978633958062319}
+  spawnPoint: {fileID: 1649978633958062319}
 --- !u!1 &958655598658629065
 GameObject:
   m_ObjectHideFlags: 0
@@ -6131,7 +6133,7 @@ MonoBehaviour:
   path: {fileID: 7948168282217624689}
   tileInterface: {fileID: 1379287721046219724}
   tilePoints: {fileID: 1956933190412220564}
-  countNewPath: 3
+  roads: 2
 --- !u!1 &1515106482115860311
 GameObject:
   m_ObjectHideFlags: 0
@@ -17434,6 +17436,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   newTileTransform: {fileID: 2837341614577965392}
+  spawnPoint: {fileID: 2837341614577965392}
 --- !u!1 &4927940829271977973
 GameObject:
   m_ObjectHideFlags: 0
@@ -27871,6 +27874,7 @@ MonoBehaviour:
   spawnPositions:
   - {fileID: 7054955354150782524}
   - {fileID: 4523801240638038144}
+  - {fileID: 5055640536826585517}
   finallyPosition: {fileID: 5390581081030262006}
 --- !u!1 &8131946100735095162
 GameObject:

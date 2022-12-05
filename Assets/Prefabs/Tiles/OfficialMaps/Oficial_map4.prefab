@@ -5247,6 +5247,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   newTileTransform: {fileID: 1096857201154945162}
+  spawnPoint: {fileID: 1096857200589320430}
 --- !u!1 &1096857201411727018
 GameObject:
   m_ObjectHideFlags: 0
