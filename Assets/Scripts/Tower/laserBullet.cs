@@ -1,6 +1,8 @@
+using System.Collections;
+using System.Collections.Generic;
 using UnityEngine;
 
-public class laser_bullet : MonoBehaviour
+public class laserBullet : MonoBehaviour
 {
     private Transform target;
     public float speed = 150f;
@@ -19,7 +21,8 @@ public class laser_bullet : MonoBehaviour
     {
         if (target == null)
         {
-            Destroy(gameObject);
+            Debug.Log("No Target");
+            //Destroy(gameObject);
             return;
         }
         Vector3 dir = target.position - transform.position;
@@ -45,7 +48,7 @@ public class laser_bullet : MonoBehaviour
         if (unit.unitParameters.health <= 0)
         {
             Destroy(enemy.gameObject);
-            levelStats.mana += 15f;
+            levelStats.AddMana(15);
         }
     }
 }

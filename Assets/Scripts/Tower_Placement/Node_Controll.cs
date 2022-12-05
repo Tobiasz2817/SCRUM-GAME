@@ -47,7 +47,7 @@ public class Node_Controll : MonoBehaviour
         else
         {
             turret = (GameObject)Instantiate(turretToBuild, transform.position + positionOffset, transform.rotation);
-            levelStats.mana -= 50f;
+            levelStats.mana -= 50;
         }
     }
     void OnMouseEnter()

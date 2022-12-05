@@ -1,25 +1,31 @@
-using UnityEngine.UI;
 using TMPro;
 using UnityEngine;
 
 public class LevelStats : MonoBehaviour
 {
     public TMP_Text ManaUI;
-    public float mana;
-    public float manaGrowth;
+    public int mana;
+    public int manaGrowth;
+    public int maxMana;
     private void Start()
     {
         mana = 100;
+        maxMana = 200;
         manaGrowth = 1;
-        InvokeRepeating("GrowMana", 0f, 1f); 
+        InvokeRepeating("ManaGrowth", 0f, 1f); 
     }
     
     private void Update()
     {
-        ManaUI.text = "Mana: " + mana.ToString();
+        ManaUI.text = mana.ToString() + "/" + maxMana.ToString();
     }
-    void GrowMana()
+    private void ManaGrowth()
     {
-        mana += manaGrowth;
+        AddMana(manaGrowth);
+    }
+    public void AddMana(int amount)
+    {
+        if (mana + amount <= maxMana)
+            mana += amount;
     }
 }

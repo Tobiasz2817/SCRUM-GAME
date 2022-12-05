@@ -35,17 +35,8 @@ public class standardBullet : MonoBehaviour
 
     void HitTarget()
     {
-        Damage(target);
+        target.GetComponent<UnitAI>().Damage(damage);
         Destroy(gameObject);
     }
-    void Damage(Transform enemy)
-    {
-        var unit = enemy.GetComponent<Unit>();
-        unit.unitParameters.health -= damage;
-        if (unit.unitParameters.health <= 0)
-        {
-            Destroy(enemy.gameObject);
-            levelStats.mana += 15f;
-        }
-    }
-}
+  }
+
