@@ -391,7 +391,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   hoverColor: {r: 0, g: 0, b: 0, a: 0}
-  positionOffset: {x: 0, y: 5, z: 0}
+  positionOffset: {x: 0, y: 0, z: 0}
 --- !u!1 &3919476125493436121
 GameObject:
   m_ObjectHideFlags: 0
@@ -1047,7 +1047,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   hoverColor: {r: 0, g: 0, b: 0, a: 0}
-  positionOffset: {x: 0, y: 5, z: 0}
+  positionOffset: {x: 0, y: 0, z: 0}
 --- !u!1 &5918062652987887712
 GameObject:
   m_ObjectHideFlags: 0

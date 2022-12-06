@@ -152,5 +152,5 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   unitParameters:
-    health: 0
+    health: 120
     damage: 0

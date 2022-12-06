@@ -1,10 +1,12 @@
+using System.Collections;
+using System.Collections.Generic;
 using UnityEngine;
 
-public class standardBullet : MonoBehaviour
+public class laserBullet : MonoBehaviour
 {
     private Transform target;
-    public float speed = 70f;
-    private float damage = 10f;
+    public float speed = 150f;
+    private float damage = 5f;
     private LevelStats levelStats;
     private void OnEnable()
     {
@@ -19,7 +21,8 @@ public class standardBullet : MonoBehaviour
     {
         if (target == null)
         {
-            Destroy(gameObject);
+            Debug.Log("No Target");
+            //Destroy(gameObject);
             return;
         }
         Vector3 dir = target.position - transform.position;
@@ -35,8 +38,17 @@ public class standardBullet : MonoBehaviour
 
     void HitTarget()
     {
-        target.GetComponent<UnitAI>().Damage(damage);
+        Damage(target);
         Destroy(gameObject);
     }
-  }
-
+    void Damage(Transform enemy)
+    {
+        var unit = enemy.GetComponent<Unit>();
+        unit.unitParameters.health -= damage;
+        if (unit.unitParameters.health <= 0)
+        {
+            Destroy(enemy.gameObject);
+            levelStats.AddMana(15);
+        }
+    }
+}
