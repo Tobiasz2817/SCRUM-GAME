@@ -28306,7 +28306,7 @@ MonoBehaviour:
   path: {fileID: 7089765150883874934}
   tileInterface: {fileID: 4370910930985305318}
   tilePoints: {fileID: 703225296852178752}
-  roads: 2
+  roads: 3
 --- !u!1 &8213326976566367992
 GameObject:
   m_ObjectHideFlags: 0

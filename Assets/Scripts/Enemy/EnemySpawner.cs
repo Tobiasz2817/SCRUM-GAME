@@ -13,8 +13,19 @@ public class EnemySpawner : MonoBehaviour
     private GameObject enemyPrefab;
 
     private bool startCheckEnemies = false;
+    private bool isWaveEnd = false;
     public static event Action OnEnemiesDown;
+
+    private void OnEnable()
+    {
+        WaveController.OnWaveEnd += WaveEnd;
+    }
     
+    public void OnDisable()
+    {
+        WaveController.OnWaveEnd -= WaveEnd;
+    }
+
     public async Task SpawnEnemies(WaveDependencies waveDependencies)
     {
         foreach (var lastTile in tilesController.tileSpawn.lastTiles)
@@ -40,16 +51,34 @@ public class EnemySpawner : MonoBehaviour
         {
             InvokeRepeating(nameof(HearthBeatEnemiesCheck),0f,2f);
         }
+
+        if (Input.GetKeyDown(KeyCode.K))
+        {
+            var enemies = FindObjectsOfType<UnitAI>();
+            foreach (var enemy in enemies)
+            {
+                Destroy(enemy.gameObject);
+            }
+            Debug.Log("Invoke");
+        }
     }
 
     private void HearthBeatEnemiesCheck()
     {
         var enemies = GameObject.FindWithTag("Enemy");
-        if (enemies == null)
+        if (enemies == null && isWaveEnd)
         {
-            OnEnemiesDown?.Invoke();
+            if (!GameManager.EndGame)
+                OnEnemiesDown?.Invoke();
+
             CancelInvoke(nameof(HearthBeatEnemiesCheck));
             startCheckEnemies = false;
+            isWaveEnd = false;
         }
     }
+    private void WaveEnd(WaveDependencies obj)
+    {
+        isWaveEnd = true;
+    }
+
 }

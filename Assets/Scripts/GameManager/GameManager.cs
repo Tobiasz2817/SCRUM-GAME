@@ -18,20 +18,28 @@ public class GameManager : MonoBehaviour
     {
         TileDependencies.OnFullyDependencies += DisableAccessibilitySpawningTile;
         UnitAI.ReachedGoal += LoseLevel;
+        WaveController.OnWaveEnd += EndWave;
     }
-
     private void OnDisable()
     {
         TileDependencies.OnFullyDependencies -= DisableAccessibilitySpawningTile;
         UnitAI.ReachedGoal -= LoseLevel;
+        WaveController.OnWaveEnd -= EndWave;
+    }
+
+    private void DisableAccessibilitySpawningTile()
+    {
+        AvaliableSpawnTiles = false;
     }
     private void LoseLevel()
     {
         EndGame = true;
         Debug.Log("Level is End");
     }
-    private void DisableAccessibilitySpawningTile()
+    private void EndWave(WaveDependencies obj)
     {
-        AvaliableSpawnTiles = false;
+        if (obj.currentWave > obj.countWaves)
+            EndGame = true;
     }
+
 }
