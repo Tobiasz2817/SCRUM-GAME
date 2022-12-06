@@ -7,7 +7,7 @@ public class button : MonoBehaviour
 {
     public void Play()
     {
-        SceneManager.LoadScene("Level System Test");
+        SceneManager.LoadScene("SampleScene");
     }
 
     public void Settings()

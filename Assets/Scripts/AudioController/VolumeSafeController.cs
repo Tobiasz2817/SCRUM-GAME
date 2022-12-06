@@ -25,7 +25,7 @@ public class VolumeSafeController : MonoBehaviour
     {
         float volumeValue = 0;
         volumeValue = PlayerPrefs.GetFloat("VolumeValue");
-        //volumeSlider.value = volumeValue;
+        volumeSlider.value = volumeValue;
         AudioListener.volume = volumeValue;
     }
 }
