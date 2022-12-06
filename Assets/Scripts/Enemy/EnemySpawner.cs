@@ -1,5 +1,7 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Threading.Tasks;
 using UnityEngine;
 
 public class EnemySpawner : MonoBehaviour
@@ -10,28 +12,73 @@ public class EnemySpawner : MonoBehaviour
     [SerializeField] 
     private GameObject enemyPrefab;
 
-    [SerializeField] 
-    private float delayTime;
+    private bool startCheckEnemies = false;
+    private bool isWaveEnd = false;
+    public static event Action OnEnemiesDown;
 
-    void Start()
+    private void OnEnable()
     {
-        StartCoroutine(SpawnEnemies());
+        WaveController.OnWaveEnd += WaveEnd;
+    }
+    
+    public void OnDisable()
+    {
+        WaveController.OnWaveEnd -= WaveEnd;
     }
 
-    private IEnumerator SpawnEnemies()
+    public async Task SpawnEnemies(WaveDependencies waveDependencies)
     {
-        while (true)
+        foreach (var lastTile in tilesController.tileSpawn.lastTiles)
         {
-            yield return new WaitForSeconds(delayTime);
-
-            foreach (var lastTile in tilesController.lastTiles)
+            foreach (var lastTileSpawnPoint in lastTile.tilePoints.spawnPositions)
             {
-                foreach (var lastTileSpawnPoint in lastTile.tilePoints.spawnPositions)
+                for (int i = 0; i < waveDependencies.currentEnemiesByItteration; i++)
                 {
+                    if (GameManager.EndGame) return;
+
                     var enemy = Instantiate(enemyPrefab, lastTileSpawnPoint.position,lastTileSpawnPoint.rotation);
                     enemy.GetComponent<UnitAI>().SetUnit(tilesController.finallyPoint.position);
                 }
             }
         }
+        startCheckEnemies = true;
+        await Task.Delay((int)(waveDependencies.currentDelayTime * 1000));
     }
+
+    private void Update()
+    {
+        if (startCheckEnemies)
+        {
+            InvokeRepeating(nameof(HearthBeatEnemiesCheck),0f,2f);
+        }
+
+        if (Input.GetKeyDown(KeyCode.K))
+        {
+            var enemies = FindObjectsOfType<UnitAI>();
+            foreach (var enemy in enemies)
+            {
+                Destroy(enemy.gameObject);
+            }
+            Debug.Log("Invoke");
+        }
+    }
+
+    private void HearthBeatEnemiesCheck()
+    {
+        var enemies = GameObject.FindWithTag("Enemy");
+        if (enemies == null && isWaveEnd)
+        {
+            if (!GameManager.EndGame)
+                OnEnemiesDown?.Invoke();
+
+            CancelInvoke(nameof(HearthBeatEnemiesCheck));
+            startCheckEnemies = false;
+            isWaveEnd = false;
+        }
+    }
+    private void WaveEnd(WaveDependencies obj)
+    {
+        isWaveEnd = true;
+    }
+
 }

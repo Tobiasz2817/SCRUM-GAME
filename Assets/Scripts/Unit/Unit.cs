@@ -6,8 +6,8 @@ public abstract class Unit : MonoBehaviour
     public UnitParameters unitParameters;
     protected void DisableUnit(Unit unit)
     {
-        Destroy(unit.gameObject);
         Debug.Log("REACHED");
+        Destroy(unit.gameObject);
     }
 
 }
