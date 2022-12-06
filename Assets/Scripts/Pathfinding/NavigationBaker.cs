@@ -21,12 +21,12 @@ public class NavigationBaker : MonoBehaviour {
 
     private void OnEnable()
     {
-        TilesController.OnTileAdded += GenerateSurface;
+        TileSpawn.OnTileAdded += GenerateSurface;
     }
 
     private void OnDisable()
     {
-        TilesController.OnTileAdded -= GenerateSurface;
+        TileSpawn.OnTileAdded -= GenerateSurface;
     }
     
     private void GenerateSurface(Transform[] tilePath_)

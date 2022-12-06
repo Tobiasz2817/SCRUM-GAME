@@ -586,7 +586,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   tilesController: {fileID: 1519580941}
   enemyPrefab: {fileID: 3477240791451735434, guid: 163504b0cba6b44468a9eff3c053fb7c, type: 3}
-  delayTime: 5
 --- !u!4 &1022008394
 Transform:
   m_ObjectHideFlags: 0
@@ -937,6 +936,7 @@ GameObject:
   - component: {fileID: 1519580943}
   - component: {fileID: 1519580944}
   - component: {fileID: 1519580941}
+  - component: {fileID: 1519580945}
   m_Layer: 0
   m_Name: Environment
   m_TagString: Untagged
@@ -956,24 +956,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f1b72c0b57887df478842ce6950f5553, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  tiles:
-  - {fileID: 2787367895255675292, guid: 28a15da159389054b8d44c33562cbf00, type: 3}
-  - {fileID: 8503541060967275437, guid: c3a03309865c14646b46cc7c55f3c45d, type: 3}
-  - {fileID: 4588288980118900666, guid: 6b687bd5038ee0546bea1359002bdc85, type: 3}
-  - {fileID: 1096857200744880628, guid: d6ed08367049f734ab620225d4922722, type: 3}
-  - {fileID: 3311905295440897583, guid: da720913f3d8c2b4681fda1d9518fdaa, type: 3}
-  - {fileID: 5611469968402574798, guid: 0aa4063f601048a47ae9350ee4e39e7c, type: 3}
-  - {fileID: 3213907423320124442, guid: e9fd954ff61224c469a5984ac7f2b433, type: 3}
-  - {fileID: 4765263477814201378, guid: 4c05b445974b5f34c94f70aa31ceb990, type: 3}
-  - {fileID: 8647195107004681757, guid: 38d9daf13d6c54742b9d48aac281bf96, type: 3}
-  - {fileID: 958162306943013313, guid: 6aa967eff4b9a4e49bb971e455b15b40, type: 3}
-  - {fileID: 7457297031068485214, guid: f0987153e4fe6ed47be4d1d6051f553d, type: 3}
-  - {fileID: 3837021741337853595, guid: 21b102e4ae5fba949a6165568a9e4ca7, type: 3}
-  - {fileID: 8180868569616803453, guid: 0ce24789b720b0c4ebdd86bb24e411df, type: 3}
-  - {fileID: 1513362227978708595, guid: 2d5f99a3173f60749974bb4f848e6906, type: 3}
-  - {fileID: 7839962063659356543, guid: ca84ca53db883e440be827744763ecbf, type: 3}
-  lastTiles: []
   finallyPoint: {fileID: 0}
+  tileDependenciesLevelData: {fileID: 11400000, guid: 702a984e7d5977b4d911eeb084dae85d, type: 2}
+  tileSpawn: {fileID: 1519580945}
+  environmentTiles: []
 --- !u!4 &1519580943
 Transform:
   m_ObjectHideFlags: 0
@@ -1003,6 +989,35 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 310.31, y: 2, z: 371}
   m_Center: {x: -61.39, y: 8.3, z: -73.89}
+--- !u!114 &1519580945
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1519580940}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3110ebc4ea7b4777b18060fe31da0ff8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  tiles:
+  - {fileID: 6596165343743855940, guid: 28a15da159389054b8d44c33562cbf00, type: 3}
+  - {fileID: 9027875734468116756, guid: c3a03309865c14646b46cc7c55f3c45d, type: 3}
+  - {fileID: 3812068558358435073, guid: 6b687bd5038ee0546bea1359002bdc85, type: 3}
+  - {fileID: 1096857200744880629, guid: d6ed08367049f734ab620225d4922722, type: 3}
+  - {fileID: 6240517563677515083, guid: da720913f3d8c2b4681fda1d9518fdaa, type: 3}
+  - {fileID: 4685609271446319933, guid: 0aa4063f601048a47ae9350ee4e39e7c, type: 3}
+  - {fileID: 7077307884208216614, guid: e9fd954ff61224c469a5984ac7f2b433, type: 3}
+  - {fileID: 3939926874408765301, guid: 4c05b445974b5f34c94f70aa31ceb990, type: 3}
+  - {fileID: 559024847296170656, guid: 38d9daf13d6c54742b9d48aac281bf96, type: 3}
+  - {fileID: 7337624476709003319, guid: 6aa967eff4b9a4e49bb971e455b15b40, type: 3}
+  - {fileID: 5778788902501107405, guid: f0987153e4fe6ed47be4d1d6051f553d, type: 3}
+  - {fileID: 4850780593683370408, guid: 21b102e4ae5fba949a6165568a9e4ca7, type: 3}
+  - {fileID: 8426551418630506035, guid: 0ce24789b720b0c4ebdd86bb24e411df, type: 3}
+  - {fileID: 4910667857545760047, guid: 2d5f99a3173f60749974bb4f848e6906, type: 3}
+  - {fileID: 5998460688100695175, guid: ca84ca53db883e440be827744763ecbf, type: 3}
+  lastTiles: []
 --- !u!1 &1550503092
 GameObject:
   m_ObjectHideFlags: 0

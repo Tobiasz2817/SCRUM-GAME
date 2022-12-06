@@ -10,13 +10,13 @@ public class Tile : MonoBehaviour
     [SerializeField] public TileInterface tileInterface;
     [SerializeField] public TileMoveToPoints tilePoints;
     [SerializeField] public CountRoads roads;
-
-
 }
+
+
 
 public enum CountRoads
 {
-    Single,
-    Double,
-    Triple
+    Single = 1,
+    Double = 2,
+    Triple = 3
 }

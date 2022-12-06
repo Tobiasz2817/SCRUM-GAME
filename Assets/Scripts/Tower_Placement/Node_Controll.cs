@@ -36,18 +36,18 @@ public class Node_Controll : MonoBehaviour
         }
         if (turret!= null)
         {
-            Debug.Log("Cant build there");
+            turret.GetComponent<Tower>();
             return;
         }
         GameObject turretToBuild = build_Controll.GetTurretToBuild();
-        if (levelStats.mana <= 50f)
+        if (levelStats.mana <= turretToBuild.GetComponent<Tower>().cost)
         {
             Debug.Log("not enough mana");
         }
         else
         {
-            turret = (GameObject)Instantiate(turretToBuild, transform.position + positionOffset, transform.rotation);
-            levelStats.mana -= 50f;
+            turret = (GameObject)Instantiate(turretToBuild, transform.position + positionOffset, Quaternion.identity);
+            levelStats.mana -= turretToBuild.GetComponent<Tower>().cost;
         }
     }
     void OnMouseEnter()

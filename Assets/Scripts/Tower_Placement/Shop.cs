@@ -13,9 +13,9 @@ public class Shop : MonoBehaviour
     {
         build_Controll.SelectTurretToBuild(build_Controll.normalTurretPrefab);
     }
-    public void SelectStandardTower2()
+    public void SelectMachineTower ()
     {
-        build_Controll.SelectTurretToBuild(build_Controll.normalTurretPrefab2);
+        build_Controll.SelectTurretToBuild(build_Controll.machineTurretPrefab);
     }
 
 }

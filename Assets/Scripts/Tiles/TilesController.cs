@@ -10,73 +10,63 @@ using Random = UnityEngine.Random;
 
 public class TilesController : MonoBehaviour
 {
-    [SerializeField]
-    private List<GameObject> tiles = new List<GameObject>();
-
-    public List<Tile> lastTiles;
-
-    [SerializeField] 
     public Transform finallyPoint;
+    
+    public TileDependenciesLevelData tileDependenciesLevelData;
+    public TileDependencies tileDependencies;
+    public TileSpawn tileSpawn;
 
-    public static event Action<Transform[]> OnTileAdded;
+    public List<Tile> environmentTiles = new List<Tile>();
 
     private void Start()
     {
-        // Make First Tile
-        SpawnTile(0,Vector3.zero, Quaternion.identity);
-        finallyPoint = lastTiles[0].tilePoints.finallyPosition != null ? lastTiles[0].tilePoints.finallyPosition : finallyPoint;
+        CreateTileDependecies();
+        FirstTileCreate();
     }
-
     private void OnEnable()
     {
         TileCreatingInterface.OnNewTileCreating += SpawnTile;
+        TileDependencies.OnFullyDependencies += DisableInterface;
+        EnemySpawner.OnEnemiesDown += EnableInterface;
     }
-
     private void OnDisable()
     {
         TileCreatingInterface.OnNewTileCreating -= SpawnTile;
+        TileDependencies.OnFullyDependencies -= DisableInterface;
+        EnemySpawner.OnEnemiesDown -= EnableInterface;
     }
 
-    private void SpawnTile(Tile lastTile,Transform newTilePos)
+    private void SpawnTile(Tile lastTile, Transform newTilePlace)
     {
-        var randomTile = Random.Range(1, tiles.Count);
+        if (!GameManager.AvaliableSpawnTiles || GameManager.EndGame) return;
         
-        var nextTile = Instantiate(tiles[randomTile],newTilePos.transform.position,Quaternion.identity,transform).GetComponent<Tile>();
+        int randomIndex = tileDependencies.GetTileIndex();
+        environmentTiles.Add(tileSpawn.SpawnTile(randomIndex,lastTile,newTilePlace.position));
 
-        nextTile.gameObject.SetActive(false);
-
-        SetSuitableTileRotation(nextTile,lastTile);
-
-        nextTile.gameObject.SetActive(true);
-
-        if (lastTiles.Contains(lastTile) && lastTile.roads == CountRoads.Single)
-            lastTiles.Remove(lastTile);
-
-        lastTiles.Add(nextTile);
+        tileDependencies.DependenciesAreFully();
         
-        OnTileAdded?.Invoke(this.lastTiles[(int)lastTiles.Count - 1].path.TileSurfacePath());
+        DisableInterface();
     }
-    private void SpawnTile(int index,Vector3 pos, Quaternion rot)
+    private void DisableInterface()
     {
-        lastTiles.Add(Instantiate(tiles[index],tiles[index].transform.position,Quaternion.identity,transform).GetComponent<Tile>());
-
-        OnTileAdded?.Invoke(lastTiles[(int)lastTiles.Count - 1].path.TileSurfacePath());
+        foreach (var tile in environmentTiles)
+            tile.tileInterface.gameObject.SetActive(false);
+    }
+    private void EnableInterface()
+    {
+        foreach (var tile in environmentTiles)
+            tile.tileInterface.gameObject.SetActive(true);
     }
 
-    private void SetSuitableTileRotation(Tile nextTile,Tile lastTile)
+    private void CreateTileDependecies()
     {
-        if (!lastTile) return;
-        
-        int[] valuesRotate = {0, 90, 180, 270};
+        tileDependenciesLevelData = TileDependenciesHandler.Instance != null ? TileDependenciesHandler.Instance.currentDependencies : tileDependenciesLevelData;
+        tileDependencies = new TileDependencies(tileDependenciesLevelData,tileSpawn.GetListTiles());
+    }
 
-        Transform spawnPoint = lastTile.tilePoints.GetClosestsSpawnPoint(nextTile.tilePoints.finallyPosition);
-        
-        foreach (var value in valuesRotate)
-        {
-            nextTile.transform.rotation = Quaternion.Euler(0, value - nextTile.transform.position.y, 0);
-
-            if (Vector3.Distance(spawnPoint.position, nextTile.tilePoints.finallyPosition.position) < 3f)
-                break;
-        }
+    private void FirstTileCreate()
+    {
+        environmentTiles.Add(tileSpawn.SpawnTile(tileDependencies.GetTileIndex(CountRoads.Single),null,Vector3.zero));
+        finallyPoint = tileSpawn.GetFinallyPoint();
     }
 }

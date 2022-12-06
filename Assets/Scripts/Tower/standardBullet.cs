@@ -11,7 +11,7 @@ public class standardBullet : MonoBehaviour
         levelStats = FindObjectOfType<LevelStats>();
 
     }
-    public void Seek (Transform _target)
+    public void Seek(Transform _target)
     {
         target = _target;
     }
@@ -30,22 +30,13 @@ public class standardBullet : MonoBehaviour
             return;
         }
 
-        transform.Translate(dir.normalized * distancePerFrame,Space.World);
+        transform.Translate(dir.normalized * distancePerFrame, Space.World);
     }
 
-   void HitTarget()
+    void HitTarget()
     {
-        Damage(target);
+        target.GetComponent<UnitAI>().Damage(damage);
         Destroy(gameObject);
     }
-    void Damage(Transform enemy)
-    {
-        var unit = enemy.GetComponent<Unit>();
-        unit.unitParameters.health -= damage;
-        if (unit.unitParameters.health <= 0 )
-        {
-            Destroy(enemy.gameObject);
-            levelStats.mana += 15f;
-        }
-    }
-}
+  }
+

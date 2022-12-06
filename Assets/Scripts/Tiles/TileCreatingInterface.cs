@@ -20,7 +20,7 @@ public class TileCreatingInterface : MonoBehaviour
 
     private void ButtonActionInvoker()
     {
-        OnNewTileCreating?.Invoke(myTile,newTileTransform); 
+        OnNewTileCreating?.Invoke(myTile,newTileTransform);
         myTile.tilePoints.spawnPositions.Remove(spawnPoint);
         gameObject.SetActive(false);
     }
