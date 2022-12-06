@@ -1,18 +1,16 @@
 using UnityEngine;
 
-public class machine_tower : MonoBehaviour
+public class machine_tower : Tower
 {
     private TrailRenderer trail;
 
     private Transform target;
-    public float range = 50f;
+   
     public Transform rotatingPart;
     public float rotationSpeed = 10f;
     public string enemyTag = "Enemy";
     public Transform firePoint;
-    public float fireRate = 5f;
-    private float fireCountdown = 0f;
-    private float damage = 5;
+    
     // Start is called before the first frame update
     private void Awake()
     {
@@ -22,7 +20,10 @@ public class machine_tower : MonoBehaviour
     {
         trail.enabled = true;
         trail.SetPosition(0, firePoint.position);
-
+        range = 15f;
+        damage = 5f;
+        fireRate = 5f;
+        cost = 100;
         InvokeRepeating("UpdateTarget", 0f, 0.5f);
 
     }

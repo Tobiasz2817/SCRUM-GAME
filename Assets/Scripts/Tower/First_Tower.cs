@@ -1,9 +1,6 @@
-using System.Collections;
-using System.Collections.Generic;
-using System.Diagnostics.CodeAnalysis;
 using UnityEngine;
 
-public class First_Tower : MonoBehaviour
+public class First_Tower : Tower
 {
     private Transform target;
     public float range = 50f;
