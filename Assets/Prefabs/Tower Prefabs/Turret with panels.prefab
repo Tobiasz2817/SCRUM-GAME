@@ -133,12 +133,16 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   range: 100
+  fireRate: 1
+  fireCountdown: 0
+  damage: 1
+  cost: 50
+  upgrade_level: 0
   rotatingPart: {fileID: 497889241167274995}
   rotationSpeed: 10
   enemyTag: Enemy
   bulletPrefab: {fileID: 2379682111148025020, guid: 48338ccf09c0a1f4e93f411a9997fbfe, type: 3}
   firePoint: {fileID: 6896326106606518320}
-  fireRate: 1
 --- !u!1 &2792615140873116500
 GameObject:
   m_ObjectHideFlags: 0
