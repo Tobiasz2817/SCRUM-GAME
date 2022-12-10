@@ -3,14 +3,11 @@ using UnityEngine;
 public class First_Tower : Tower
 {
     private Transform target;
-    public float range = 50f;
     public Transform rotatingPart;
     public float rotationSpeed = 10f;
     public string enemyTag = "Enemy";
     public GameObject bulletPrefab;
     public Transform firePoint;
-    public float fireRate = 1f;
-    private float fireCountdown = 0f;
     // Start is called before the first frame update
     void Start()
     {
@@ -63,7 +60,7 @@ public class First_Tower : Tower
     {
         GameObject bulletGO = (GameObject)Instantiate(bulletPrefab, firePoint.position, firePoint.rotation);
         standardBullet bullet = bulletGO.GetComponent<standardBullet>();
-
+        bullet.sourceTower = this.gameObject;
         if (bullet != null)
             bullet.Seek(target);
     }

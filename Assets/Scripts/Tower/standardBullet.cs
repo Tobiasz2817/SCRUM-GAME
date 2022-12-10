@@ -6,6 +6,7 @@ public class standardBullet : MonoBehaviour
     public float speed = 70f;
     private float damage = 10f;
     private LevelStats levelStats;
+    public GameObject sourceTower;
     private void OnEnable()
     {
         levelStats = FindObjectOfType<LevelStats>();
@@ -35,7 +36,7 @@ public class standardBullet : MonoBehaviour
 
     void HitTarget()
     {
-        target.GetComponent<UnitAI>().Damage(damage);
+        target.GetComponent<UnitAI>().Damage(sourceTower.GetComponent<Tower>().damage);
         Destroy(gameObject);
     }
   }
