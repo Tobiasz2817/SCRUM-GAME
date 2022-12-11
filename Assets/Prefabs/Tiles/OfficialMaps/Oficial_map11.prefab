@@ -1035,6 +1035,7 @@ GameObject:
   - component: {fileID: 417942433230125812}
   - component: {fileID: 2669588997533722168}
   - component: {fileID: 1252073245524942110}
+  - component: {fileID: 2935944941595843488}
   m_Layer: 0
   m_Name: Cube.081
   m_TagString: Untagged
@@ -1120,7 +1121,20 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   hoverColor: {r: 0, g: 0, b: 0, a: 0}
-  positionOffset: {x: 0, y: 0, z: 0}
+  positionOffset: {x: 0, y: 10, z: 0}
+--- !u!65 &2935944941595843488
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 320281803469656791}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 0.10231539, y: 0.10072349, z: 0.1765322}
+  m_Center: {x: 0, y: 0, z: 0}
 --- !u!1 &321154922672801765
 GameObject:
   m_ObjectHideFlags: 0
@@ -8498,6 +8512,7 @@ GameObject:
   - component: {fileID: 1517352296782005150}
   - component: {fileID: 2614130410607382455}
   - component: {fileID: 447515755406896982}
+  - component: {fileID: 1371233127022230836}
   m_Layer: 0
   m_Name: Cube.013
   m_TagString: Untagged
@@ -8583,7 +8598,20 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   hoverColor: {r: 0, g: 0, b: 0, a: 0}
-  positionOffset: {x: 0, y: 0, z: 0}
+  positionOffset: {x: 0, y: 10, z: 0}
+--- !u!65 &1371233127022230836
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2297960944166361466}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 0.10231539, y: 0.10072349, z: 0.1765322}
+  m_Center: {x: 0, y: 0.000000014901161, z: -0.000000029802322}
 --- !u!1 &2312595680789657411
 GameObject:
   m_ObjectHideFlags: 0
@@ -27260,6 +27288,7 @@ GameObject:
   - component: {fileID: 7888868138633842181}
   - component: {fileID: 4543141292451458666}
   - component: {fileID: 7773883986305423257}
+  - component: {fileID: 2067588378728914535}
   m_Layer: 0
   m_Name: Cube.011
   m_TagString: Untagged
@@ -27345,7 +27374,20 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   hoverColor: {r: 0, g: 0, b: 0, a: 0}
-  positionOffset: {x: 0, y: 0, z: 0}
+  positionOffset: {x: 0, y: 10, z: 0}
+--- !u!65 &2067588378728914535
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7772175690491111461}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 0.10231539, y: 0.10072349, z: 0.1765322}
+  m_Center: {x: 0, y: 0.0000000018626451, z: -0.000000014901161}
 --- !u!1 &7777830782515579363
 GameObject:
   m_ObjectHideFlags: 0

@@ -12,6 +12,7 @@ public class Tower : MonoBehaviour
     public int cost;
     public int upgrade_level;
     private LevelStats levelStats;
+    public GameObject panel;
 
     private void Awake()
     {
@@ -28,5 +29,14 @@ public class Tower : MonoBehaviour
         }
         else
             Debug.Log("Not enough currency");
+    }
+    public void PanelActive()
+    {
+        if (panel.active == false)
+        {
+            panel.SetActive(true);
+        }
+        else
+            panel.SetActive(false);
     }
 }

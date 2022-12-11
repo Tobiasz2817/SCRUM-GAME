@@ -36,7 +36,7 @@ public class Node_Controll : MonoBehaviour
         }
         if (turret!= null)
         {
-            turret.GetComponent<Tower>().Upgrade();
+            Debug.Log("Cant build here");
             return;
         }
         GameObject turretToBuild = build_Controll.GetTurretToBuild();

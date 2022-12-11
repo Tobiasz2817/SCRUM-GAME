@@ -1,3 +1,4 @@
+using Unity.VisualScripting;
 using UnityEngine;
 
 public class First_Tower : Tower
@@ -8,6 +9,7 @@ public class First_Tower : Tower
     public string enemyTag = "Enemy";
     public GameObject bulletPrefab;
     public Transform firePoint;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -41,6 +43,7 @@ public class First_Tower : Tower
     // Update is called once per frame
     void Update()
     {
+
         if (target == null)
             return;
         //rotation of head of tower for current model
@@ -69,4 +72,9 @@ public class First_Tower : Tower
         Gizmos.color = Color.red;
         Gizmos.DrawWireSphere(transform.position, range);
     }
+    private void OnMouseDown()
+    {
+        PanelActive();
+    }
+
 }
