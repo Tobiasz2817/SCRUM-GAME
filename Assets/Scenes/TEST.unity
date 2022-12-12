@@ -827,11 +827,11 @@ MonoBehaviour:
   waveDependencies:
     DecreaseDelayTime: -1
     IncreaseEnemiesByItteration: 1
-    IncreaseEnemiesByWave: 3
+    IncreaseEnemiesByWave: 2
     countWaves: 3
-    currentDelayTime: 8
-    currentEnemiesByItteration: 2
-    currentEnemiesByWave: 6
+    currentDelayTime: 3
+    currentEnemiesByItteration: 1
+    currentEnemiesByWave: 4
     currentWave: 0
   enemySpawner: {fileID: 993758298}
 --- !u!4 &1542090059

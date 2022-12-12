@@ -3,8 +3,10 @@ using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using TMPro;
 using Unity.VisualScripting;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 using Random = UnityEngine.Random;
 
@@ -12,29 +14,55 @@ public class TilesController : MonoBehaviour
 {
     public Transform finallyPoint;
     
-    public TileDependenciesLevelData tileDependenciesLevelData;
     public TileDependencies tileDependencies;
     public TileSpawn tileSpawn;
 
     public List<Tile> environmentTiles = new List<Tile>();
 
+    [SerializeField]
+    private TileDependenciesLevelData tileDependenciesLevelData;
     private void Start()
     {
         CreateTileDependecies();
         FirstTileCreate();
     }
+
     private void OnEnable()
     {
         TileCreatingInterface.OnNewTileCreating += SpawnTile;
         TileDependencies.OnFullyDependencies += DisableInterface;
         EnemySpawner.OnEnemiesDown += EnableInterface;
+        EnemySpawner.OnOverGame += IsOver;
+        UnitAI.ReachedGoal += LoseLevel;
     }
     private void OnDisable()
     {
         TileCreatingInterface.OnNewTileCreating -= SpawnTile;
         TileDependencies.OnFullyDependencies -= DisableInterface;
         EnemySpawner.OnEnemiesDown -= EnableInterface;
+        EnemySpawner.OnOverGame -= IsOver;
+        UnitAI.ReachedGoal -= LoseLevel;
     }
+
+    private async void LoseLevel()
+    {
+        Debug.Log("YOU LOSE");
+        Debug.Log("Back to lobby...");
+        await Task.Delay(2000);
+        
+        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex - 1);
+    }
+
+    private async void IsOver()
+    {
+        Debug.Log("CONGRATS YOU WIN");
+        Debug.Log("Back to lobby...");
+        await Task.Delay(2000);
+        
+        tileDependenciesLevelData.isReached = true;
+        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex - 1);
+    }
+
 
     private void SpawnTile(Tile lastTile, Transform newTilePlace)
     {
@@ -43,7 +71,7 @@ public class TilesController : MonoBehaviour
         int randomIndex = tileDependencies.GetTileIndex();
         environmentTiles.Add(tileSpawn.SpawnTile(randomIndex,lastTile,newTilePlace.position));
 
-        tileDependencies.DependenciesAreFully();
+        //tileDependencies.DependenciesAreFully();
         
         DisableInterface();
     }

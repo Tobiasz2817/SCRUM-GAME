@@ -15,6 +15,7 @@ public class EnemySpawner : MonoBehaviour
     private bool startCheckEnemies = false;
     private bool isWaveEnd = false;
     public static event Action OnEnemiesDown;
+    public static event Action OnOverGame;
 
     private void OnEnable()
     {
@@ -68,8 +69,10 @@ public class EnemySpawner : MonoBehaviour
         var enemies = GameObject.FindWithTag("Enemy");
         if (enemies == null && isWaveEnd)
         {
-            if (!GameManager.EndGame)
+            if (GameManager.AvaliableSpawnTiles)
                 OnEnemiesDown?.Invoke();
+            else
+                OnOverGame?.Invoke();
 
             CancelInvoke(nameof(HearthBeatEnemiesCheck));
             startCheckEnemies = false;

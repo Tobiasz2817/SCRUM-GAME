@@ -13,7 +13,7 @@ public class UnitAI : Unit
 
     private void Awake()
     {
-        levelStats = GetComponent<LevelStats>();
+        levelStats = FindObjectOfType<LevelStats>();
         navMeshAgent = GetComponent<NavMeshAgent>();
     }
 
@@ -38,7 +38,7 @@ public class UnitAI : Unit
         unit.unitParameters.health -= damage;
         if (unit.unitParameters.health <= 0)
         {   
-            //levelStats.AddMana(15);
+            levelStats.AddMana(15);
             Destroy(gameObject);
             
         }
