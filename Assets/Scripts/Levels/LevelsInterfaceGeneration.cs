@@ -11,19 +11,6 @@ public class LevelsInterfaceGeneration : MonoBehaviour
     public void GenerateLevels(List<TileDependenciesLevelData> levelDataTiles)
     {
         levelInterfaces.Clear();
-        
-        /*for (int i = 1; i <= levelDataTiles.Count; i++)
-        {
-            var tmp  = Instantiate(levelPrefab, transform);
-            var level = tmp.GetComponent<LevelInterface>();
-            level.SetUpLevel(levelDataTiles[i - 1]);
-            
-            Debug.Log(levelDataTiles[i - 1].isReached);
-            Debug.Log(levelDataTiles[i - 1].nameLevel);
-            
-            levelInterfaces.Add(level);
-        }
-        */
 
         foreach (var levelData in levelDataTiles)
         {
