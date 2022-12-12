@@ -123,6 +123,50 @@ NavMeshSettings:
     debug:
       m_Flags: 0
   m_NavMeshData: {fileID: 0}
+--- !u!1 &202474372
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 202474374}
+  - component: {fileID: 202474373}
+  m_Layer: 0
+  m_Name: LevelHandler
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &202474373
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 202474372}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 154d7386995cf53429ecbc5ee3b7fe8c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!4 &202474374
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 202474372}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 5
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &438412399
 GameObject:
   m_ObjectHideFlags: 0
@@ -1112,5 +1156,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 13dd84c1d730da94d8ee8b4a637e1636, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  saveButton: {fileID: 1884079838}
   _levelsGeneration: {fileID: 815358930}
+  levelDataTiles:
+  - {fileID: 11400000, guid: 702a984e7d5977b4d911eeb084dae85d, type: 2}
+  - {fileID: 11400000, guid: 3bed1d7c3941ed147a561768dab5d5ed, type: 2}
+  - {fileID: 11400000, guid: 8c0bbac7a7acc6f46907c67908b8a117, type: 2}
+  - {fileID: 11400000, guid: babb05b6205bbd3478059cedf50652ea, type: 2}

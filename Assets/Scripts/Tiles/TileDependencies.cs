@@ -8,12 +8,10 @@ public class TileDependencies
 {
     public Dictionary<CountRoads, List<int>> dictDependencies = new Dictionary<CountRoads, List<int>>();
     public Dictionary<CountRoads, int> currentAvailables = new Dictionary<CountRoads, int>();
-    public TileDependenciesLevelData dependenciesLevelData;
 
     public static event Action OnFullyDependencies;
     public TileDependencies(TileDependenciesLevelData dependenciesLevelData, List<Tile> tilesList)
     {
-        this.dependenciesLevelData = dependenciesLevelData;
         this.CreateAvailablesRoads(dependenciesLevelData);
         this.CreateDictionaryDependencies(tilesList);
     }
@@ -49,6 +47,8 @@ public class TileDependencies
         currentAvailables[(CountRoads)randomDependecies]--;
         
         int randomIndex = Random.Range(tmp[0], tmp[^1]);
+        
+        if(DependenciesAreFully()) OnFullyDependencies?.Invoke();
 
         return randomIndex;
     }
@@ -63,12 +63,12 @@ public class TileDependencies
         return randomIndex;
     }
 
-    public void DependenciesAreFully()
+    public bool DependenciesAreFully()
     {
         foreach (var available in currentAvailables)
             if (available.Value != 0)
-                return;
+                return false;
 
-        OnFullyDependencies?.Invoke();
+        return true;
     }
 }

@@ -8,6 +8,8 @@ public class GameManager : MonoBehaviour
     public static bool AvaliableSpawnTiles { get; private set; }
     public static bool EndGame { get; private set; }
 
+    public static event Action<bool> GameIsOver;
+
     private void Start()
     {
         AvaliableSpawnTiles = true;
@@ -34,12 +36,17 @@ public class GameManager : MonoBehaviour
     private void LoseLevel()
     {
         EndGame = true;
+        GameIsOver?.Invoke(false);
         Debug.Log("Level is End");
     }
     private void EndWave(WaveDependencies obj)
     {
         if (obj.currentWave > obj.countWaves)
+        {
             EndGame = true;
+            GameIsOver?.Invoke(true);
+            Debug.Log("IS OVER");
+        }
     }
 
 }

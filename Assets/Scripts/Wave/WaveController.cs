@@ -34,7 +34,7 @@ public class WaveController : MonoBehaviour
             if (GameManager.EndGame) return;
             await enemySpawner.SpawnEnemies(waveDependencies);
         }
-        
+
         OnWaveEnd?.Invoke(waveDependencies);
     }
 }
@@ -61,7 +61,7 @@ public class WaveDependencies
     {
         currentEnemiesByItteration += IncreaseEnemiesByItteration;
         currentEnemiesByWave += IncreaseEnemiesByWave;
-        currentDelayTime += DecreaseDelayTime;
+        if(currentDelayTime > 2) currentDelayTime += DecreaseDelayTime;
     }
     public void IncreaseWave()
     {
