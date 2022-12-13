@@ -3,7 +3,22 @@ guid: 67f046048af73f6418a238556bb5ec70
 ModelImporter:
   serializedVersion: 21300
   internalIDToNameTable: []
-  externalObjects: {}
+  externalObjects:
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Material.040
+    second: {fileID: 2100000, guid: 6b36093b0c6fd4749947156334b94508, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: light tape line
+    second: {fileID: 2100000, guid: 4ccd66d2868135a49a3cb69d72f2617d, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: main color
+    second: {fileID: 2100000, guid: 91c7b4df07d6ddd4eadf6ac0361f5f05, type: 2}
   materials:
     materialImportMode: 2
     materialName: 0
