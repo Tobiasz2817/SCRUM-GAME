@@ -27,7 +27,7 @@ public class WaveController : MonoBehaviour
         await Task.Delay(1000);
         
         waveDependencies.IncreaseValuesByWave();
-        waveDependencies.IncreaseWave();
+        
 
         for (int i = 0; i < waveDependencies.currentEnemiesByWave; i++)
         {
@@ -47,24 +47,15 @@ public class WaveDependencies
     public int IncreaseEnemiesByItteration = 1;
     public int IncreaseEnemiesByWave = 3;
     
-    public int countWaves = 3;
-    
     [Header("Start Wave Dependencies")]   
     public float currentDelayTime = 8;
     public int currentEnemiesByItteration = 2;
     public int currentEnemiesByWave = 6;
-
-    [HideInInspector]
-    public int currentWave = 0;
 
     public void IncreaseValuesByWave()
     {
         currentEnemiesByItteration += IncreaseEnemiesByItteration;
         currentEnemiesByWave += IncreaseEnemiesByWave;
         if(currentDelayTime > 2) currentDelayTime += DecreaseDelayTime;
-    }
-    public void IncreaseWave()
-    {
-        currentWave++;
     }
 }

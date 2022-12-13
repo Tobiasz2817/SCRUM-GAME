@@ -41,7 +41,7 @@ public class GameManager : MonoBehaviour
     }
     private void EndWave(WaveDependencies obj)
     {
-        if (obj.currentWave > obj.countWaves)
+        if (!AvaliableSpawnTiles)
         {
             EndGame = true;
             GameIsOver?.Invoke(true);
