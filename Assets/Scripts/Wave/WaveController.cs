@@ -12,11 +12,12 @@ public class WaveController : MonoBehaviour
     //public WaveInterface waveInterface;
     public static event Action<WaveDependencies> OnWaveEnd;
 
-    private void Start()
+    private void OnEnable()
     {
         TileCreatingInterface.OnNewTileCreating += TileIsCreating;
+        CardEventsHandler.OnModificateSpawn += IncreaseEnemyByItteration;
     }
-    
+
     private void OnDisable()
     {
         TileCreatingInterface.OnNewTileCreating -= TileIsCreating;
@@ -36,6 +37,10 @@ public class WaveController : MonoBehaviour
         }
 
         OnWaveEnd?.Invoke(waveDependencies);
+    }
+    
+    private void IncreaseEnemyByItteration(CardParemeters cardParemeters) {
+        waveDependencies.IncreaseEnemiesByItteration += cardParemeters.increaser;
     }
 }
 

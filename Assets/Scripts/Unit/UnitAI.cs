@@ -16,7 +16,7 @@ public class UnitAI : Unit
         levelStats = FindObjectOfType<LevelStats>();
         navMeshAgent = GetComponent<NavMeshAgent>();
     }
-
+    
     public void Update()
     {
         MoveAI.MoveTo(navMeshAgent,pathDirection);
@@ -28,9 +28,20 @@ public class UnitAI : Unit
         }
     }
 
-    public void SetUnit(Vector3 direction)
+    public void SetUnitDestination(Vector3 direction)
     {
         this.pathDirection = direction;
+    }
+    public void SetUnitImplants(CardParemeters cardParameters)
+    {
+        switch (cardParameters.typeImplant) {
+            case TypeImplant.Health:
+                SetHealthAI(cardParameters.increaser);
+                break;
+            case TypeImplant.Movement:
+                SetSpeedAI(cardParameters.increaser);
+                break;
+        }
     }
     public void Damage(float damage)
     {
@@ -40,7 +51,15 @@ public class UnitAI : Unit
         {   
             levelStats.AddMana(15);
             Destroy(gameObject);
-            
         }
+    }
+
+    private void SetSpeedAI(float speed) {
+        float speedDifference = (navMeshAgent.speed * speed) / 100;
+        navMeshAgent.speed += speedDifference;
+    }
+    private void SetHealthAI(float health) {
+        float healthDifference = (unitParameters.health * health) / 100;
+        unitParameters.health += healthDifference;
     }
 }
