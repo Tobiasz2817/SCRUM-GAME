@@ -12,6 +12,8 @@ public class EnemySpawner : MonoBehaviour
     [SerializeField] 
     private GameObject enemyPrefab;
 
+    private CardParemeters cardParameters;
+
     private bool startCheckEnemies = false;
     private bool isWaveEnd = false;
     public static event Action OnEnemiesDown;
@@ -20,11 +22,15 @@ public class EnemySpawner : MonoBehaviour
     private void OnEnable()
     {
         WaveController.OnWaveEnd += WaveEnd;
+        CardEventsHandler.OnModificateHealth += SetImplant;
+        CardEventsHandler.OnModificateMovement += SetImplant;
     }
-    
+
     public void OnDisable()
     {
         WaveController.OnWaveEnd -= WaveEnd;
+        CardEventsHandler.OnModificateHealth -= SetImplant;
+        CardEventsHandler.OnModificateMovement -= SetImplant;
     }
 
     public async Task SpawnEnemies(WaveDependencies waveDependencies)
@@ -38,7 +44,12 @@ public class EnemySpawner : MonoBehaviour
                     if (GameManager.EndGame) return;
 
                     var enemy = Instantiate(enemyPrefab, lastTileSpawnPoint.position,lastTileSpawnPoint.rotation);
-                    enemy.GetComponent<UnitAI>().SetUnit(tilesController.finallyPoint.position);
+                    var unitAI = enemy.GetComponent<UnitAI>(); 
+                    unitAI.SetUnitDestination(tilesController.finallyPoint.position);
+                    
+                    
+                    if(cardParameters == null) continue;
+                    unitAI.SetUnitImplants(cardParameters);
                 }
             }
         }
@@ -79,9 +90,7 @@ public class EnemySpawner : MonoBehaviour
             isWaveEnd = false;
         }
     }
-    private void WaveEnd(WaveDependencies obj)
-    {
-        isWaveEnd = true;
-    }
 
+    private void WaveEnd(WaveDependencies obj) => isWaveEnd = true;
+    private void SetImplant(CardParemeters cardParameters) => this.cardParameters = cardParameters;
 }

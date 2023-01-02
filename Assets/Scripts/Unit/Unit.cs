@@ -17,4 +17,5 @@ public struct UnitParameters
 {
     public float health;
     public int damage;
+    public int speed;
 }
