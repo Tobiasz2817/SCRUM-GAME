@@ -20,7 +20,7 @@ public class Tower : MonoBehaviour
     }
     public void Upgrade()
     {
-        if (levelStats.mana >= (cost / 2))
+        if (levelStats.mana > (cost / 2))
         {
             levelStats.mana -= (cost / 2);
             this.range += 10;
@@ -33,9 +33,7 @@ public class Tower : MonoBehaviour
     public void PanelActive()
     {
         if (panel.active == false)
-        {
             panel.SetActive(true);
-        }
         else
             panel.SetActive(false);
     }
