@@ -21,8 +21,8 @@ public class UIManagerTech : MonoBehaviour
 	public GameObject creditsScreen;
 	[Tooltip("The UI Panel holding the settings")]
 	public GameObject systemScreen;
-	[Tooltip("The UI Panel holding the CANCEL or ACCEPT Options for New Game")]
-	public GameObject newGameScreen;
+	[Tooltip("The UI Panel holding the Game Info")]
+	public GameObject gameInfo;
 	[Tooltip("The UI Panel holding the YES or NO Options for Load Game")]
 	public GameObject loadGameScreen;
 	[Tooltip("The Loading Screen holding loading bar")]
@@ -32,18 +32,6 @@ public class UIManagerTech : MonoBehaviour
 	public Image[] panelGraphics;
 	public Image[] blurs;
 	public UnityEngine.Color tint = UnityEngine.Color.cyan;
-
-	[Header("ADVANDED - Panels")]
-	[Tooltip("The UI Panel holding the New Account Screen elements")]
-	public GameObject newAccountScreen;
-	[Tooltip("The UI Panel holding the Delete Account Screen elements")]
-	public GameObject deleteAccountScreen;
-	[Tooltip("The UI Panel holding Log-In Buttons")]
-	public GameObject loginScreen;
-	[Tooltip("The UI Panel holding account and load menu")]
-	public GameObject databaseScreen;
-	[Tooltip("The UI Menu Bar at the edge of the screen")]
-	public GameObject menuBar;
 
 	[Header("ADVANDED - UI Elements & User Data")]
 	[Tooltip("The Main Canvas Gameobject")]
@@ -106,14 +94,8 @@ public class UIManagerTech : MonoBehaviour
 	void Start() {
 		// By default, starts on the home screen, disables others
 		homeScreen.SetActive(true);
-		if (newAccountScreen != null)
-			newAccountScreen.SetActive(false);
-		if (deleteAccountScreen != null)
-			deleteAccountScreen.SetActive(false);
-		if (loginScreen != null)
-			loginScreen.SetActive(false);
-		if (databaseScreen != null)
-			databaseScreen.SetActive(false);
+		if (gameInfo != null)
+			gameInfo.SetActive(false);
 		if (creditsScreen != null)
 			creditsScreen.SetActive(false);
 		if (systemScreen != null)
@@ -122,8 +104,7 @@ public class UIManagerTech : MonoBehaviour
 			loadingScreen.SetActive(false);
 		if (loadGameScreen != null)
 			loadGameScreen.SetActive(false);
-		if (newGameScreen != null)
-			newGameScreen.SetActive(false);
+
 
 		// Set Colors if the user didn't before play
 		for (int i = 0; i < panelGraphics.Length; i++)
@@ -274,15 +255,4 @@ public class UIManagerTech : MonoBehaviour
 	// Add the save code in this function!
 
 	// Load Bar synching animation
-	IEnumerator LoadAsynchronously(string sceneName) { // scene name is just the name of the current scene being loaded
-		AsyncOperation operation = SceneManager.LoadSceneAsync(sceneName);
-
-		while (!operation.isDone) {
-			float progress = Mathf.Clamp01(operation.progress / .9f);
-
-			loadingBar.value = progress;
-
-			yield return null;
-		}
-	}
 }
