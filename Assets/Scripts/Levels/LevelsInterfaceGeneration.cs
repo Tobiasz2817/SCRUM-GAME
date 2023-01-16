@@ -6,23 +6,24 @@ using UnityEngine;
 public class LevelsInterfaceGeneration : MonoBehaviour
 {
     [SerializeField] private GameObject levelPrefab;
-    
-    List<LevelInterface> levelInterfaces = new List<LevelInterface>();
+    [SerializeField] private List<LevelInterface> levelInterfaces = new List<LevelInterface>();
+    [SerializeField] private List<Transform> points = new List<Transform>();
     public void GenerateLevels(List<TileDependenciesLevelData> levelDataTiles)
     {
         levelInterfaces.Clear();
 
-        foreach (var levelData in levelDataTiles)
+        for (int i = 0; i < levelDataTiles.Count; i++)
         {
-            var tmp  = Instantiate(levelPrefab, transform);
+            var tmp = Instantiate(levelPrefab, points[i].position, points[i].rotation, transform);
             var level = tmp.GetComponent<LevelInterface>();
-            level.SetUpLevel(levelData);
-            
-            Debug.Log(levelData.isReached);
-            Debug.Log(levelData.nameLevel);
-            
+            level.SetUpLevel(levelDataTiles[i]);
+
+            Debug.Log(levelDataTiles[i].isReached);
+            Debug.Log(levelDataTiles[i].nameLevel);
+
             levelInterfaces.Add(level);
         }
+
     }
 
     public void EnablePanels()
