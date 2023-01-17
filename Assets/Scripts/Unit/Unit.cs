@@ -4,6 +4,7 @@ using UnityEngine;
 public abstract class Unit : MonoBehaviour
 {
     public UnitParameters unitParameters;
+    public EnemyDissolve effects;
     protected void DisableUnit(Unit unit)
     {
         Debug.Log("REACHED");
