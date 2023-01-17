@@ -3,6 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using System.Threading.Tasks;
 using UnityEngine;
+using UnityEngine.AI;
 
 public class EnemySpawner : MonoBehaviour
 {
@@ -42,10 +43,11 @@ public class EnemySpawner : MonoBehaviour
                 for (int i = 0; i < waveDependencies.currentEnemiesByItteration; i++)
                 {
                     if (GameManager.EndGame) return;
-
-                    var enemy = Instantiate(enemyPrefab, lastTileSpawnPoint.position,lastTileSpawnPoint.rotation);
-                    var unitAI = enemy.GetComponent<UnitAI>(); 
+                    
+                    var enemy = Instantiate(enemyPrefab, lastTileSpawnPoint.position,Quaternion.Euler(lastTileSpawnPoint.position - tilesController.finallyPoint.position));
+                    var unitAI = enemy.GetComponent<UnitAI>();
                     unitAI.SetUnitDestination(tilesController.finallyPoint.position);
+                    unitAI.effects.TurnDissolves(1);
                     
                     
                     if(cardParameters == null) continue;

@@ -1,4 +1,5 @@
 using System;
+using System.Collections;
 using UnityEngine;
 using UnityEngine.AI;
 
@@ -8,17 +9,15 @@ public class UnitAI : Unit
     private LevelStats levelStats;
     private NavMeshAgent navMeshAgent;
     private Vector3 pathDirection;
-
+    
     public static event Action ReachedGoal;
-
     private void Awake()
     {
         levelStats = FindObjectOfType<LevelStats>();
         navMeshAgent = GetComponent<NavMeshAgent>();
     }
     
-    public void Update()
-    {
+    public void Update() {
         MoveAI.MoveTo(navMeshAgent,pathDirection);
      
         if(Vector3.Distance(transform.position,pathDirection) < 1.5f)
