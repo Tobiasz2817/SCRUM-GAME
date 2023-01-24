@@ -5,6 +5,8 @@ public abstract class Unit : MonoBehaviour
 {
     public UnitParameters unitParameters;
     public EnemyDissolve effects;
+    [SerializeField]
+    protected Animator animator;
     protected void DisableUnit(Unit unit)
     {
         Debug.Log("REACHED");
