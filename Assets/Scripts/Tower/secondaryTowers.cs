@@ -11,9 +11,11 @@ public class secondaryTowers : MonoBehaviour
     public GameObject manaBank;
     public GameObject manaGenerator;
     private GameObject towerToBuild;
+    private Transform camera;
     private void Awake()
     {
         levelStats = FindObjectOfType<LevelStats>();
+        camera = Camera.main.transform;
     }
     public void SelectManaBank()
     {
@@ -45,6 +47,12 @@ public class secondaryTowers : MonoBehaviour
         }
     }
     // Update is called once per frame
+    private void Update()
+    {
+        if (panel.active == true)
+            panel.transform.LookAt(camera);
+           
+    }
     private void OnMouseDown()
     {
         if (panel.active == false)

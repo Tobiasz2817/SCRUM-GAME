@@ -13,14 +13,16 @@ public class Tower : MonoBehaviour
     public int upgrade_level;
     private LevelStats levelStats;
     public GameObject panel;
+    private Transform camera;
 
     private void Awake()
     {
         levelStats = FindObjectOfType<LevelStats>();
+        camera = Camera.main.transform;
     }
     public void Upgrade()
     {
-        if (levelStats.mana > (cost / 2))
+        if (levelStats.mana >= (cost / 2))
         {
             levelStats.mana -= (cost / 2);
             this.range += 10;
@@ -29,6 +31,13 @@ public class Tower : MonoBehaviour
         }
         else
             Debug.Log("Not enough currency");
+    }
+    private void Update()
+    {
+        if (panel.active == true)
+        {
+            panel.transform.LookAt(camera);
+        }    
     }
     public void PanelActive()
     {
