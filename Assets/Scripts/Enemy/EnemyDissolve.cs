@@ -13,17 +13,17 @@ public class EnemyDissolve : MonoBehaviour
     [SerializeField] private List<SkinnedMeshRenderer> skinnedMeshRenderers = new List<SkinnedMeshRenderer>();
     [SerializeField] private float durationDissolve = 2f;
     
-    public async void TurnDissolves(float endValue) {
+    public async void TurnDissolves(float endValue, float duration = 0.0f) {
+        if (duration == 0.0f) duration = durationDissolve;
         foreach (var skinned in skinnedMeshRenderers) {
-            EnableDissolve(skinned,endValue);
+            EnableDissolve(skinned,endValue,duration);
         }
     }
 
-    private void EnableDissolve(SkinnedMeshRenderer skinnedMeshRenderer, float endValue) {
-        skinnedMeshRenderer.materials[1].DOFloat(endValue,"_Cutoff", durationDissolve);
+    private void EnableDissolve(SkinnedMeshRenderer skinnedMeshRenderer, float endValue, float duration) {
+        skinnedMeshRenderer.materials[1].DOFloat(endValue,"_Cutoff", duration);
     }
-
-    public float GetDurationDissolve() {
-        return durationDissolve;
+    public float GetCurrentValue() {
+        return skinnedMeshRenderers[0].materials[1].GetFloat("_Cutoff");
     }
 }

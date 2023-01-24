@@ -49,8 +49,24 @@ public class UnitAI : Unit
         if (unit.unitParameters.health <= 0)
         {   
             levelStats.AddMana(15);
-            Destroy(gameObject);
+            StartCoroutine(DestroyAfterDissolve());
         }
+    }
+
+    private IEnumerator DestroyAfterDissolve() {
+        animator.StopPlayback();
+        animator.enabled = false;
+
+        navMeshAgent.SetDestination(transform.position);
+        navMeshAgent.isStopped = true;
+        gameObject.tag = "Untagged";
+
+        effects.TurnDissolves(0,1f);
+        while (effects.GetCurrentValue() > 0.09f) {
+            yield return null;
+        }
+        
+        Destroy(gameObject);
     }
 
     private void SetSpeedAI(float speed) {

@@ -73,6 +73,7 @@ MonoBehaviour:
     damage: 0
     speed: 0
   effects: {fileID: 1364180227}
+  animator: {fileID: 6889384029160592232}
 --- !u!1 &6889384027939352705
 GameObject:
   m_ObjectHideFlags: 0
