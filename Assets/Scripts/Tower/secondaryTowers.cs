@@ -49,8 +49,10 @@ public class secondaryTowers : MonoBehaviour
     // Update is called once per frame
     private void Update()
     {
+        Vector3 vec = camera.transform.eulerAngles;
+        vec.x = 0;
         if (panel.active == true)
-            panel.transform.LookAt(camera);
+            panel.transform.rotation = Quaternion.Euler(vec);
            
     }
     private void OnMouseDown()

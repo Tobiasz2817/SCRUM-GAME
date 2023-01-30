@@ -34,9 +34,11 @@ public class Tower : MonoBehaviour
     }
     private void Update()
     {
+        Vector3 vec = camera.transform.eulerAngles;
+        vec.x = 0;
         if (panel.active == true)
         {
-            panel.transform.LookAt(camera);
+            panel.transform.rotation = Quaternion.Euler(vec);
         }    
     }
     public void PanelActive()
