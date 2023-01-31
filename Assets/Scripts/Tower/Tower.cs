@@ -12,13 +12,10 @@ public class Tower : MonoBehaviour
     public int cost;
     public int upgrade_level;
     private LevelStats levelStats;
-    public GameObject panel;
-    private Transform camera;
 
     private void Awake()
     {
         levelStats = FindObjectOfType<LevelStats>();
-        camera = Camera.main.transform;
     }
     public void Upgrade()
     {
@@ -34,18 +31,7 @@ public class Tower : MonoBehaviour
     }
     private void Update()
     {
-        Vector3 vec = camera.transform.eulerAngles;
-        vec.x = 0;
-        if (panel.active == true)
-        {
-            panel.transform.rotation = Quaternion.Euler(vec);
-        }    
+   
     }
-    public void PanelActive()
-    {
-        if (panel.active == false)
-            panel.SetActive(true);
-        else
-            panel.SetActive(false);
-    }
+    
 }

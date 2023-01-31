@@ -1,0 +1,23 @@
+Æ{
+    "Items": {
+        "keyData": [
+            "LevelData"
+        ],
+        "valueData": [
+            {
+                "Items": [
+                    true,
+                    false,
+                    false,
+                    false,
+                    false,
+                    false,
+                    false,
+                    false,
+                    false,
+                    false
+                ]
+            }
+        ]
+    }
+}

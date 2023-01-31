@@ -2,7 +2,7 @@ using UnityEngine;
 
 public class machine_tower : Tower
 {
-    private TrailRenderer trail;
+    private LineRenderer trail;
 
     private Transform target;
    
@@ -10,18 +10,18 @@ public class machine_tower : Tower
     public float rotationSpeed = 10f;
     public string enemyTag = "Enemy";
     public Transform firePoint;
-    
+    public GameObject panel;
     // Start is called before the first frame update
     private void Awake()
     {
-        trail = GetComponent<TrailRenderer>();
+        trail = GetComponent<LineRenderer>();
     }
     void Start()
     {
         trail.enabled = true;
         trail.SetPosition(0, firePoint.position);
-        range = 15f;
-        damage = 5f;
+        range = 50f;
+        damage = 25f;
         fireRate = 5f;
         cost = 100;
         InvokeRepeating("UpdateTarget", 0f, 0.5f);
@@ -54,6 +54,7 @@ public class machine_tower : Tower
     // Update is called once per frame
     void Update()
     {
+        trail.SetPosition(0, firePoint.position);
         if (target == null)
         {
             if(trail.enabled == true)
@@ -81,7 +82,7 @@ public class machine_tower : Tower
         {
             trail.enabled = true;
         }
-        trail.AddPosition(target.position);
+        trail.SetPosition(1,target.position);
 
         target.GetComponent<UnitAI>().Damage(damage);
     }
@@ -89,6 +90,17 @@ public class machine_tower : Tower
     {
         Gizmos.color = Color.red;
         Gizmos.DrawWireSphere(transform.position, range);
+    }
+    private void OnMouseDown()
+    {
+        PanelActive();
+    }
+    public void PanelActive()
+    {
+        if (panel.active == false)
+            panel.SetActive(true);
+        else
+            panel.SetActive(false);
     }
     //Trail Renderer TODO instead of bullet
 }

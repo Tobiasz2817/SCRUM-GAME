@@ -15,5 +15,5 @@ MonoBehaviour:
   isReached: 0
   nameLevel: 2
   CountOfDoubleTile: 1
-  CountOfTripleTile: 0
+  CountOfTripleTile: 1
   CountOfSingleTile: 2

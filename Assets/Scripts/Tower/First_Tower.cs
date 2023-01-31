@@ -9,8 +9,13 @@ public class First_Tower : Tower
     public string enemyTag = "Enemy";
     public GameObject bulletPrefab;
     public Transform firePoint;
-
+    private Transform camera;
+    public GameObject panel;
     // Start is called before the first frame update
+    private void Awake()
+    {
+        camera = Camera.main.transform;
+    }
     void Start()
     {
         InvokeRepeating("UpdateTarget", 0f, 0.5f);
@@ -56,8 +61,13 @@ public class First_Tower : Tower
             Shoot();
             fireCountdown = 1f / fireRate;
         }
-
         fireCountdown -= Time.deltaTime;
+        Vector3 vec = GetComponent<Camera>().transform.eulerAngles;
+        vec.x = 0;
+        if (panel.active == true)
+        {
+            panel.transform.rotation = Quaternion.Euler(vec);
+        }
     }
     void Shoot()
     {
@@ -76,5 +86,11 @@ public class First_Tower : Tower
     {
         PanelActive();
     }
-
+    public void PanelActive()
+    {
+        if (panel.active == false)
+            panel.SetActive(true);
+        else
+            panel.SetActive(false);
+    }
 }

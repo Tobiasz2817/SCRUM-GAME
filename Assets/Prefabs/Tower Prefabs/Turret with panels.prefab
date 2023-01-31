@@ -134,10 +134,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0bb45dfc09f42bc479ea6e1f4359876e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  range: 100
+  range: 200
   fireRate: 1
   fireCountdown: 0
-  damage: 500
+  damage: 50
   cost: 50
   upgrade_level: 0
   panel: {fileID: 2647074817622087599}
@@ -146,6 +146,7 @@ MonoBehaviour:
   enemyTag: Enemy
   bulletPrefab: {fileID: 2379682111148025020, guid: 48338ccf09c0a1f4e93f411a9997fbfe, type: 3}
   firePoint: {fileID: 6896326106606518320}
+  panel: {fileID: 2647074817622087599}
 --- !u!65 &6157959919296123591
 BoxCollider:
   m_ObjectHideFlags: 0
