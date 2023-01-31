@@ -10,6 +10,9 @@ public class GameManager : MonoBehaviour
 
     public static event Action<bool> GameIsOver;
 
+    private bool isPause = false;
+
+    [SerializeField] private GameObject pauseInterface;
     private void Start()
     {
         AvaliableSpawnTiles = true;
@@ -33,7 +36,7 @@ public class GameManager : MonoBehaviour
     {
         AvaliableSpawnTiles = false;
     }
-    private void LoseLevel()
+    public void LoseLevel()
     {
         EndGame = true;
         GameIsOver?.Invoke(false);
@@ -49,4 +52,13 @@ public class GameManager : MonoBehaviour
         }
     }
 
+    private void Update() {
+        if (!EndGame) {
+            if (Input.GetKeyDown(KeyCode.Escape)) {
+                isPause = !isPause;
+                pauseInterface.SetActive(isPause);
+                Time.timeScale = isPause ? 0 : 1;
+            }
+        }
+    }
 }

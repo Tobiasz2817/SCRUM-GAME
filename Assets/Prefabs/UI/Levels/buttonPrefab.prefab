@@ -312,7 +312,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   button: {fileID: 7482521852663810528}
   levelText: {fileID: 8608843788093197317}
-  duration: 0.8
+  duration: 1
   tileDependenciesLevelData: {fileID: 11400000, guid: 702a984e7d5977b4d911eeb084dae85d, type: 2}
 --- !u!225 &4742373758887946413
 CanvasGroup:

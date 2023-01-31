@@ -26,7 +26,7 @@ public class LevelInterface : MonoBehaviour
     void OnEnable()
     {
         button.onClick.AddListener(InvokeEvent);
-        DisablePanel();
+        DisablePanel(0);
     }
     
     void OnDisable()
@@ -43,23 +43,27 @@ public class LevelInterface : MonoBehaviour
         this.tileDependenciesLevelData = levelDataTile;
     }
 
-    public void EnablePanel()
+    public void EnablePanel(float duration)
     {
-        PanelActivity(1, true, true);
+        PanelActivity(duration,1, true, true);
     }
-    public void DisablePanel()
+    public void DisablePanel(float duration)
     {
-        PanelActivity(0, false, false);
+        PanelActivity(duration,0, false, false);
     }
     private void InvokeEvent()
     {
         OnClick?.Invoke(this);
     }
     
-    public void PanelActivity(float endValueFade, bool isInteractable, bool isRaycast)
+    public void PanelActivity(float duration,float endValueFade, bool isInteractable, bool isRaycast)
     {
         _canvasGroup.DOFade(endValueFade, duration);
         _canvasGroup.interactable = isInteractable;
         _canvasGroup.blocksRaycasts = isRaycast;
+    }
+
+    public float GetDuration() {
+        return duration;
     }
 }

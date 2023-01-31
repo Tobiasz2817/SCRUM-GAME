@@ -1,6 +1,7 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Threading.Tasks;
 using UnityEngine;
 
 public class LevelsInterfaceGeneration : MonoBehaviour
@@ -26,19 +27,25 @@ public class LevelsInterfaceGeneration : MonoBehaviour
 
     }
 
-    public void EnablePanels()
-    {
+    public void EnablePanels() {
+        StartCoroutine(EnablePanelsEnumerator());
+    }
+
+    private IEnumerator EnablePanelsEnumerator() {
         LevelInterface lastReachedPanel = levelInterfaces[0];
+
         for (int i = 1; i <= levelInterfaces.Count; i++)
         {
             if (levelInterfaces[i - 1].tileDependenciesLevelData.isReached)
             {
-                levelInterfaces[i - 1].EnablePanel();
+                levelInterfaces[i - 1].EnablePanel(1f);
                 lastReachedPanel = levelInterfaces[i];
+                
+                yield return new WaitForSeconds(levelInterfaces[i - 1].GetDuration());
             }
         }
 
-        lastReachedPanel.EnablePanel();
+        lastReachedPanel.EnablePanel(1f);
     }
 }
 /*

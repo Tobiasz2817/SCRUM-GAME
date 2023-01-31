@@ -40,6 +40,7 @@ public class Node_Controll : MonoBehaviour
             return;
         }
         GameObject turretToBuild = build_Controll.GetTurretToBuild();
+        if (turretToBuild == null) return;
         if (levelStats.mana < turretToBuild.GetComponent<Tower>().cost)
         {
             Debug.Log("not enough mana");

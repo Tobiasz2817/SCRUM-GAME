@@ -16,11 +16,14 @@ public class TilesController : MonoBehaviour
     
     public TileDependencies tileDependencies;
     public TileSpawn tileSpawn;
+    public EndGameInterface endGameInterface;
 
     public List<Tile> environmentTiles = new List<Tile>();
 
     [SerializeField]
     private TileDependenciesLevelData tileDependenciesLevelData;
+
+    private bool IsGameOver = false;
     private void Start()
     {
         CreateTileDependecies();
@@ -44,12 +47,16 @@ public class TilesController : MonoBehaviour
         UnitAI.ReachedGoal -= LoseLevel;
     }
 
-    private async void LoseLevel()
-    {
+    public async void LoseLevel() {
+        if (IsGameOver) return;
+
         Debug.Log("YOU LOSE");
         Debug.Log("Back to lobby...");
-        await Task.Delay(2000);
-        
+        endGameInterface.EnableEndInterface("You Failed :(");
+        IsGameOver = true;
+        await Task.Delay(5000);
+
+        Time.timeScale = 1;
         SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex - 1);
     }
 
@@ -57,8 +64,10 @@ public class TilesController : MonoBehaviour
     {
         Debug.Log("CONGRATS YOU WIN");
         Debug.Log("Back to lobby...");
-        await Task.Delay(2000);
+        endGameInterface.EnableEndInterface("Well done, you passed the level :)");
+        await Task.Delay(5000);
         
+        Time.timeScale = 1;
         tileDependenciesLevelData.isReached = true;
         SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex - 1);
     }
