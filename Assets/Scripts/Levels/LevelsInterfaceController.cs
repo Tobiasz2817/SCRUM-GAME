@@ -23,16 +23,12 @@ public class LevelsInterfaceController : MonoBehaviour
     
     private void Start() {
         var x = SaveManager.LoadDates<bool>("LevelData", "LevelDataFile");
-        if (x.Count == 0) 
-            SetToFile();
-        else
+        if(x.Count != 0) {
             for (int i = 0; i < x.Count; i++) {
                 levelDataTiles[i].isReached = x[i];
-                Debug.Log(x.Count);
             }
-            
-        
-        
+        }
+
         _levelsGeneration.GenerateLevels(levelDataTiles);
         _levelsGeneration.EnablePanels();
         

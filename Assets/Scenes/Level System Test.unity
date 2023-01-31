@@ -366,6 +366,7 @@ MonoBehaviour:
   - {fileID: 1686020790}
   - {fileID: 1207975868}
   - {fileID: 1686217899}
+  - {fileID: 1270646765}
 --- !u!1 &927564962
 GameObject:
   m_ObjectHideFlags: 0
@@ -634,6 +635,42 @@ RectTransform:
   m_AnchoredPosition: {x: -128, y: 223}
   m_SizeDelta: {x: 100, y: 100}
   m_Pivot: {x: 0.5, y: 0.5}
+--- !u!1 &1270646764
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1270646765}
+  m_Layer: 5
+  m_Name: Point1 (9)
+  m_TagString: Untagged
+  m_Icon: {fileID: 5132851093641282708, guid: 0000000000000000d000000000000000, type: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!224 &1270646765
+RectTransform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1270646764}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 1372692315}
+  m_RootOrder: 9
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_AnchorMin: {x: 0.5, y: 0.5}
+  m_AnchorMax: {x: 0.5, y: 0.5}
+  m_AnchoredPosition: {x: 190, y: -327}
+  m_SizeDelta: {x: 100, y: 100}
+  m_Pivot: {x: 0.5, y: 0.5}
 --- !u!1 &1289524219
 GameObject:
   m_ObjectHideFlags: 0
@@ -774,6 +811,7 @@ RectTransform:
   - {fileID: 1686020790}
   - {fileID: 1207975868}
   - {fileID: 1686217899}
+  - {fileID: 1270646765}
   m_Father: {fileID: 2041054658}
   m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -1309,6 +1347,10 @@ MonoBehaviour:
   - {fileID: 11400000, guid: babb05b6205bbd3478059cedf50652ea, type: 2}
   - {fileID: 11400000, guid: 1e73d8af62621e544b04132c8c6e9a96, type: 2}
   - {fileID: 11400000, guid: 49482451291f7f64da9549a934c38f24, type: 2}
+  - {fileID: 11400000, guid: 89d3169ccaccf2444a01d8d31eb26d40, type: 2}
+  - {fileID: 11400000, guid: 093ebca1c1823f945ab1a246b692adf9, type: 2}
+  - {fileID: 11400000, guid: 07916f18cca9f7c4c95da32a99008e3f, type: 2}
+  - {fileID: 11400000, guid: 7d08a204bae339e4286ad7be1a626411, type: 2}
 --- !u!1 &2128113812
 GameObject:
   m_ObjectHideFlags: 0

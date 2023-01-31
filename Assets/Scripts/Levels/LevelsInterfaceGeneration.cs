@@ -1,4 +1,4 @@
-using System;
+ using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Threading.Tasks;
@@ -32,20 +32,20 @@ public class LevelsInterfaceGeneration : MonoBehaviour
     }
 
     private IEnumerator EnablePanelsEnumerator() {
-        LevelInterface lastReachedPanel = levelInterfaces[0];
-
         for (int i = 1; i <= levelInterfaces.Count; i++)
         {
             if (levelInterfaces[i - 1].tileDependenciesLevelData.isReached)
             {
                 levelInterfaces[i - 1].EnablePanel(1f);
-                lastReachedPanel = levelInterfaces[i];
-                
+
                 yield return new WaitForSeconds(levelInterfaces[i - 1].GetDuration());
             }
         }
 
-        lastReachedPanel.EnablePanel(1f);
+        if (levelInterfaces[0] != null) {
+            levelInterfaces[0].tileDependenciesLevelData.isReached = true;
+            levelInterfaces[0].EnablePanel(1f);
+        }
     }
 }
 /*

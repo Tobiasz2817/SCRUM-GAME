@@ -14,6 +14,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   isReached: 0
   nameLevel: 5
-  CountOfDoubleTile: 4
-  CountOfTripleTile: 1
-  CountOfSingleTile: 5
+  CountOfDoubleTile: 2
+  CountOfTripleTile: 0
+  CountOfSingleTile: 6

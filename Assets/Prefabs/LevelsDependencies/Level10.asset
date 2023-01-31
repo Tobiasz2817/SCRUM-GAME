@@ -10,10 +10,10 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 3b91263c06194b049a0f8fd6b81eb8fa, type: 3}
-  m_Name: Level6
+  m_Name: Level10
   m_EditorClassIdentifier: 
   isReached: 0
-  nameLevel: 6
-  CountOfDoubleTile: 3
-  CountOfTripleTile: 0
-  CountOfSingleTile: 4
+  nameLevel: 10
+  CountOfDoubleTile: 8
+  CountOfTripleTile: 1
+  CountOfSingleTile: 6

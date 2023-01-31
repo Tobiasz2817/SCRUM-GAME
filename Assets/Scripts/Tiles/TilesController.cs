@@ -68,8 +68,22 @@ public class TilesController : MonoBehaviour
         await Task.Delay(5000);
         
         Time.timeScale = 1;
+        SetToFile();
         tileDependenciesLevelData.isReached = true;
         SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex - 1);
+    }
+    
+    public void SetToFile() {
+        var currentDataFile = SaveManager.LoadDates<bool>("LevelData","LevelDataFile");
+
+        for (int i = 1; i < currentDataFile.Count; i++) {
+            if (currentDataFile[i - 1] && !currentDataFile[i]) {
+                currentDataFile[i] = true;
+                break;
+            }
+        }
+
+        SaveManager.SaveDates("LevelData",currentDataFile,"LevelDataFile",ModificationType.Replaced);
     }
 
 
